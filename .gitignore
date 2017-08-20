@@ -32,3 +32,11 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+*.classpath
+src/.project
+*.jsdtscope
+src/.settings/org.eclipse.wst.common.component
+*.container
+src/.settings/org.eclipse.jdt.core.prefs
+*.name
+src/.settings/org.eclipse.wst.common.project.facet.core.xml
