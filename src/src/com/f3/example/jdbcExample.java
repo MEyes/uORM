@@ -5,14 +5,56 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Properties;
 
 import org.junit.Test;
+
+import jdk.nashorn.internal.runtime.ECMAErrors;
 
 public class jdbcExample {
 	
 	
+	
 	@Test
-	public void testjdbc()  throws SQLException, ClassNotFoundException {
+	public void testInsert() throws Exception{
+		
+		Class.forName("com.mysql.jdbc.Driver");
+		
+		Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/crm?user=root&password=root");
+		
+		Statement statement = connection.createStatement();
+		
+		int rows = statement.executeUpdate("insert into users(name,address,birthday,salary,email) values('Jack','Shanghai,China','1990-09-22','10000','jack@crm.com')");
+		
+		System.out.println(rows);
+		
+		statement.close();
+		connection.close();
+		
+	}
+	
+	@Test
+	public void testDelete() throws Exception{
+		
+		Class.forName("com.mysql.jdbc.Driver");
+		
+		Properties properties=new Properties();
+		properties.setProperty("user", "root");
+		properties.setProperty("password", "root");
+		Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/crm",properties);
+		
+		Statement statement = connection.createStatement();
+		
+		int rows = statement.executeUpdate("delete from users where id=2");
+		
+		System.out.println(rows);
+		
+		statement.close();
+		connection.close();
+	}
+	
+	@Test
+	public void testSelect()  throws SQLException, ClassNotFoundException {
 		//注冊驅動
 		
 		//DriverManager.registerDriver(new Driver());
@@ -29,12 +71,14 @@ public class jdbcExample {
 		//執行next方法，游標下移一行
 		while(resultSet.next()){
 			
-			System.out.println(resultSet.getObject(1));
-			System.out.println(resultSet.getObject(2));
+			System.out.println("-------Begin----------");
+			System.out.println(resultSet.getInt(1));
+			System.out.println(resultSet.getString("name"));
 			System.out.println(resultSet.getObject(3));
-			System.out.println(resultSet.getObject(4));
-			System.out.println(resultSet.getObject(5));
+			System.out.println(resultSet.getDate("birthday"));
+			System.out.println(resultSet.getDouble(5));
 			System.out.println(resultSet.getObject(6));
+			System.out.println("-------End----------");
 		}
 		
 		resultSet.close();
@@ -42,5 +86,22 @@ public class jdbcExample {
 		connection.close();
 	}
 
+	
+	@Test 
+	public void testUpdate() throws Exception{
+		
+		Class.forName("com.mysql.jdbc.Driver");
+		
+		Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/crm?user=root&password=root");
+		
+		Statement statement = connection.createStatement();
+		
+		int rows = statement.executeUpdate("update users set salary='10001.01' where id=2");
+		
+		
+		System.out.println(rows);
+		statement.close();
+		connection.close();
+	}
 
 }
