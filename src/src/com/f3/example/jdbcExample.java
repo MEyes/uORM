@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
 
-import org.apache.catalina.ant.FindLeaksTask;
 import org.junit.Test;
 
 import com.mysql.jdbc.Driver;
