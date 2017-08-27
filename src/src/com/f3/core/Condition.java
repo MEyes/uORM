@@ -12,6 +12,11 @@ public class Condition {
 	public Condition(){
 		
 	}
+	
+	public Condition(ConditionType conditionType,String field){
+		this.conditionType=conditionType;
+	    this.field=field;
+	}
 
 	public ConditionType getConditionType() {
 		return conditionType;

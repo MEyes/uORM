@@ -1,5 +1,6 @@
 package com.f3.core;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CriteriaData {
@@ -9,6 +10,15 @@ public class CriteriaData {
 	private List<Condition> conditions;
 	private List<OrderByClause> orderByClauses;
 	private int limit;
+	
+	public CriteriaData(){
+		
+		conditions=new ArrayList<Condition>();
+		
+		
+	}
+	
+	
 	public String getFrom() {
 		return from;
 	}

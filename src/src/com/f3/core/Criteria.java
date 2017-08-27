@@ -1,6 +1,9 @@
 package com.f3.core;
 
-import com.sun.xml.internal.ws.handler.HandlerProcessor.RequestOrResponse;
+import java.text.DateFormat;
+import java.util.Date;
+
+import org.w3c.dom.ls.LSException;
 
 public class Criteria {
 
@@ -112,8 +115,69 @@ public class Criteria {
 		return this;
 	}
 	
-	private void end(){
+	public void end(){
 		
 		
+	}
+	
+	
+	private Condition currentCondition;
+	
+	public Criteria startNewCondition(ConditionType conditionType,String field){
+		
+		if (currentCondition!=null) {
+			
+			criteriaData.getConditions().add(currentCondition);
+			
+		}
+		currentCondition=new Condition(conditionType,field);
+	
+		return this;
+		
+	}
+	
+	public String convertValue(Object value){
+		
+		String valueToUse="";
+		if (value==null || (value instanceof String && String.valueOf(value).equals(""))) {
+			
+			return "''";
+		}
+		
+		
+		else if (value instanceof String) {
+			
+			valueToUse="'"+encode(String.valueOf(value))+"'";
+		}	
+		
+		else if (value instanceof Boolean) {
+			
+			Boolean bValue=(Boolean)value;
+			valueToUse=bValue?"1":"0";
+		}
+		else if (value instanceof Date){
+			
+			Date dValue=(Date)value;
+			valueToUse="'"+dValue.toLocaleString()+"'";
+		}
+		
+		//TODO:Numeric
+		return valueToUse;
+		
+		
+	}
+	
+	public void BuildCondition(){
+		
+	}
+	
+	private String encode(String value){
+		
+		if (value!=null && !value.equals("")) {
+			
+			
+			return value.replace("'", "''");
+		}
+		return value;
 	}
 }
