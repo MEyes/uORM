@@ -17,14 +17,14 @@ public class Startup {
 //			System.out.println(content);
 //		}
 		
-		AbstractBeanFactory beanFactory =new AutowireCapableBeanFactory();
-		XmlBeanDefinitionReader xmlBeanDefinitionReader=new XmlBeanDefinitionReader(new ResourceLoader());
-		xmlBeanDefinitionReader.loadBeanDefinition("main.xml");
-		HashMap<String,BeanDefinition> beanDefinitionMap = xmlBeanDefinitionReader.getBeanDefinitionMap();
-		for (Entry<String, BeanDefinition> entry : beanDefinitionMap.entrySet()) {
-			beanFactory.registerBeanDefinition(entry.getKey(), entry.getValue());
-			System.out.println(entry.getKey());
-		}
+//		AbstractBeanFactory beanFactory =new AutowireCapableBeanFactory();
+//		XmlBeanDefinitionReader xmlBeanDefinitionReader=new XmlBeanDefinitionReader(new ResourceLoader());
+//		xmlBeanDefinitionReader.loadBeanDefinition("main.xml");
+//		HashMap<String,BeanDefinition> beanDefinitionMap = xmlBeanDefinitionReader.getBeanDefinitionMap();
+//		for (Entry<String, BeanDefinition> entry : beanDefinitionMap.entrySet()) {
+//			beanFactory.registerBeanDefinition(entry.getKey(), entry.getValue());
+//			System.out.println(entry.getKey());
+//		}
 /*		BeanDefinition beanDefinition=new BeanDefinition();
 		beanDefinition.setBeanClassName("com.f3.ioc.HelloWorldService");
 		
@@ -37,7 +37,9 @@ public class Startup {
 		
 		//beanFactory.preInstantiateSingletons();
 		
-		HelloWorldService bean = (HelloWorldService)beanFactory.getBean("hello");
+		ApplicationContext applicationContext=new ClassPathXmlApplicationContext("main.xml");
+		
+		HelloWorldService bean = (HelloWorldService)applicationContext.getBean("hello");
 		bean.sayHello();
 		
 	}
