@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 
 
+
 public class AutowireCapableBeanFactory extends AbstractBeanFactory {
 
 	@Override
@@ -22,7 +23,12 @@ public class AutowireCapableBeanFactory extends AbstractBeanFactory {
 		for (PropertyValue propertyValue : beanDefinition.getPropertyValues().getPropertyValues()) {
 			Field field = bean.getClass().getDeclaredField(propertyValue.getName());
 			field.setAccessible(true);
-			field.set(bean, propertyValue.getValue());
+			Object value= propertyValue.getValue();
+			if (value instanceof BeanReference) {
+				BeanReference beanReference=(BeanReference)value;
+				value=getBean(beanReference.getName());
+			}
+			field.set(bean,value);
 		}
 	}
 }

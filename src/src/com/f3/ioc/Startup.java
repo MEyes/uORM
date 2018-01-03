@@ -17,7 +17,7 @@ public class Startup {
 //			System.out.println(content);
 //		}
 		
-		BeanFactory beanFactory =new AutowireCapableBeanFactory();
+		AbstractBeanFactory beanFactory =new AutowireCapableBeanFactory();
 		XmlBeanDefinitionReader xmlBeanDefinitionReader=new XmlBeanDefinitionReader(new ResourceLoader());
 		xmlBeanDefinitionReader.loadBeanDefinition("main.xml");
 		HashMap<String,BeanDefinition> beanDefinitionMap = xmlBeanDefinitionReader.getBeanDefinitionMap();
@@ -35,6 +35,8 @@ public class Startup {
 		
 		beanFactory.registerBeanDefinition("hello", beanDefinition);*/
 		
+		//beanFactory.preInstantiateSingletons();
+		
 		HelloWorldService bean = (HelloWorldService)beanFactory.getBean("hello");
 		bean.sayHello();
 		
@@ -44,7 +46,15 @@ public class Startup {
 class HelloWorldService{
 	
 	public String content;
+	private Tool tool;
 	public void sayHello(){
-		System.out.println("Hello world!"+content);
+		System.out.println("Hello world!"+content+" Tool="+tool.doFunc());
+	}
+}
+class Tool{
+	private String func;
+	private HelloWorldService service;
+	public String doFunc(){
+		return func+"xxx:"+service.content;
 	}
 }

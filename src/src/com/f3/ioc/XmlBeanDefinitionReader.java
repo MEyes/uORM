@@ -11,6 +11,8 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import com.sun.xml.internal.messaging.saaj.packaging.mime.util.BEncoderStream;
+
 
 public class XmlBeanDefinitionReader  extends AbstractBeanDefinitionReader{
 
@@ -68,7 +70,17 @@ public class XmlBeanDefinitionReader  extends AbstractBeanDefinitionReader{
 				Element propertyElement=(Element)node;
 				String name=propertyElement.getAttribute("name");
 				String value=propertyElement.getAttribute("value");
-				beanDefinition.getPropertyValues().add(new PropertyValue(name, value));
+				if (value!=null && value.length()>0) {
+					beanDefinition.getPropertyValues().addPropertyValue(new PropertyValue(name, value));
+				}else{
+					String ref=propertyElement.getAttribute("ref");
+					if (ref==null || ref.length()==0) {
+						throw new IllegalArgumentException("Illegal Argument");
+					}
+					BeanReference beanReference=new BeanReference(ref);
+					beanDefinition.getPropertyValues().addPropertyValue(new PropertyValue(name, beanReference));
+				}
+				
 			}
 		}
 		
