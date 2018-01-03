@@ -5,7 +5,6 @@ public class BeanDefinition {
 	private Object bean;
 	private Class beanClass;
 	private String beanClassName;
-	
 	private PropertyValues propertyValues;
 	
 	public Object getBean() {
@@ -19,14 +18,6 @@ public class BeanDefinition {
 	}
 	public void setBeanClass(Class beanClass)  {
 		this.beanClass = beanClass;
-		
-		try {
-			Object bean = this.beanClass.newInstance();
-			setBean(bean);
-		} catch (InstantiationException | IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 	public String getBeanClassName() {
 		return beanClassName;
@@ -37,11 +28,15 @@ public class BeanDefinition {
 			Class beanClass=Class.forName(beanClassName);
 			setBeanClass(beanClass);
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	
-	
-	
+    public PropertyValues getPropertyValues() {
+        return propertyValues;
+    }
+
+    public void setPropertyValues(PropertyValues propertyValues) {
+        this.propertyValues = propertyValues;
+    }
 }

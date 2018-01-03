@@ -1,12 +1,17 @@
 package com.f3.ioc;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class PropertyValues {
 
-	private ArrayList<PropertyValue> properties=new ArrayList<PropertyValue>();
+	private List<PropertyValue> propertyValues=new ArrayList<PropertyValue>();
 	
-	public void add(PropertyValue property){
-		properties.add(property);
+	public void add(PropertyValue propertyValue){
+		propertyValues.add(propertyValue);
+	}
+	
+	public List<PropertyValue> getPropertyValues(){
+		return propertyValues;
 	}
 }
