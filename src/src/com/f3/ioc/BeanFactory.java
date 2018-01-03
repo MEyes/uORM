@@ -5,27 +5,28 @@ import java.util.HashMap;
 
 public class BeanFactory {
 
-	private  HashMap<String, Object> map=new HashMap<String,Object>();
+	private  HashMap<String, BeanDefinition> map=new HashMap<String,BeanDefinition>();
 	
-	public Object getBean(String name){
+	public BeanDefinition getBeanDefinition(String name){
 		return map.get(name);
 	}
 	
-	public void register(String key,String bean) throws ClassNotFoundException, InstantiationException, IllegalAccessException{
-		
-		Class clazz = Class.forName(bean);
-		Object newInstance = clazz.newInstance();
-		
-		map.put(key,newInstance);
+	public void register(String key,String beanClassName) {
+				
+		BeanDefinition beanDefinition = new BeanDefinition();
+		beanDefinition.setBeanClassName(beanClassName);
+		map.put(key, beanDefinition);
 	}
 	
 	
 	
-	public static void main(String[] args)  throws Exception{
+	public static void main(String[] args) {
 		BeanFactory beanFactory=new BeanFactory();
+		BeanDefinition beanDefinition=new BeanDefinition();
+	
 		beanFactory.register("hello", "com.f3.ioc.HelloWorldService");
 		
-		HelloWorldService bean = (HelloWorldService)beanFactory.getBean("hello");
+		HelloWorldService bean = (HelloWorldService)beanFactory.getBeanDefinition("hello").getBean();
 		bean.sayHello();
 		
 	}
@@ -33,7 +34,8 @@ public class BeanFactory {
 
 class HelloWorldService{
 	
+	public String content;
 	public void sayHello(){
-		System.out.println("Hello world!");
+		System.out.println("Hello world!"+content);
 	}
 }
