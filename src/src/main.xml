@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>
+
+	<bean name="hello" class="com.f3.ioc.HelloWorldService">
+		<property name="content" value="你好"></property>
+	</bean>
+
+</beans>

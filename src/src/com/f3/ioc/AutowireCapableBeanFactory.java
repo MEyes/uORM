@@ -8,35 +8,21 @@ import java.util.List;
 public class AutowireCapableBeanFactory extends AbstractBeanFactory {
 
 	@Override
-	protected Object doCreateBean(BeanDefinition beanDefinition) {
-		try {
-			Object bean = beanDefinition.getBeanClass().newInstance();
-			try {
-				List<PropertyValue> propertyValues = beanDefinition.getPropertyValues().getPropertyValues();
-
-				for (PropertyValue propertyValue : propertyValues) {
-						
-					Field field;
-					try {
-						field = bean.getClass().getDeclaredField(propertyValue.getName());
-						field.setAccessible(true);
-						field.set(bean, propertyValue.getValue());
-					} catch (NoSuchFieldException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
-
-			} catch (SecurityException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			return bean;
-		} catch (InstantiationException e) {
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
+	protected Object doCreateBean(BeanDefinition beanDefinition)  throws Exception{
+		Object bean=createBeanInstance(beanDefinition);
+		applyPropertyValues(bean, beanDefinition);
+		return bean;
+	}
+	
+	
+	protected Object createBeanInstance(BeanDefinition beanDefinition) throws Exception{
+		return beanDefinition.getBeanClass().newInstance();
+	}
+	protected void applyPropertyValues(Object bean, BeanDefinition beanDefinition) throws Exception{
+		for (PropertyValue propertyValue : beanDefinition.getPropertyValues().getPropertyValues()) {
+			Field field = bean.getClass().getDeclaredField(propertyValue.getName());
+			field.setAccessible(true);
+			field.set(bean, propertyValue.getValue());
 		}
-		return null;
 	}
 }
