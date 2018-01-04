@@ -1,4 +1,4 @@
-package com.f3.core;
+package com.f3.orm;
 
 public enum ConditionType {
 	

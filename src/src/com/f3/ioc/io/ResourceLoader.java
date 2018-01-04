@@ -1,4 +1,4 @@
-package com.f3.ioc;
+package com.f3.ioc.io;
 
 import java.net.URL;
 

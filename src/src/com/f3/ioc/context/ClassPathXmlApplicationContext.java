@@ -1,6 +1,10 @@
-package com.f3.ioc;
+package com.f3.ioc.context;
 
 import java.util.Map.Entry;
+
+import com.f3.ioc.beans.BeanDefinition;
+import com.f3.ioc.beans.XmlBeanDefinitionReader;
+import com.f3.ioc.io.ResourceLoader;
 
 public class ClassPathXmlApplicationContext extends AbstractApplicationContext{
 

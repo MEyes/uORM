@@ -1,4 +1,4 @@
-package com.f3.ioc;
+package com.f3.ioc.beans;
 
 import java.util.ArrayList;
 import java.util.List;

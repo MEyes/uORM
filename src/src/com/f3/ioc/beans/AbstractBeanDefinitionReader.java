@@ -1,7 +1,9 @@
-package com.f3.ioc;
+package com.f3.ioc.beans;
 
 import java.io.InputStream;
 import java.util.HashMap;
+
+import com.f3.ioc.io.ResourceLoader;
 
 public abstract class AbstractBeanDefinitionReader implements BeanDefinitionReader{
 

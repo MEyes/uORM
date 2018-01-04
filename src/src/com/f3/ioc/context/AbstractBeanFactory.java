@@ -1,9 +1,12 @@
-package com.f3.ioc;
+package com.f3.ioc.context;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+
+import com.f3.ioc.beans.BeanDefinition;
+import com.f3.ioc.beans.BeanFactory;
 
 public abstract class AbstractBeanFactory implements BeanFactory {
 

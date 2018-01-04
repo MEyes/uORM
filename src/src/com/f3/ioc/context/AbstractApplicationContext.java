@@ -1,5 +1,4 @@
-package com.f3.ioc;
-
+package com.f3.ioc.context;
 
 public abstract class AbstractApplicationContext implements ApplicationContext{
 	protected AbstractBeanFactory beanFactory;
