@@ -1,7 +1,5 @@
 package com.f3.aop;
 
-import org.aopalliance.intercept.MethodInterceptor;
-
 public class AdvisedSupport {
 
 	private TargetSource targetSource;

@@ -1,7 +1,7 @@
 package com.f3.example;
 
-import org.aopalliance.intercept.MethodInterceptor;
-import org.aopalliance.intercept.MethodInvocation;
+import com.f3.aop.MethodInterceptor;
+import com.f3.aop.MethodInvocation;
 
 public class TimerInterceptor implements MethodInterceptor {
 
