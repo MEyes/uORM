@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans>
 
-	<bean name="tool" class="com.f3.ioc.Tool">
+	<!-- <bean name="tool" class="com.f3.example.Tool">
 		<property name="func" value="hit"></property>
 		<property name="service" ref="hello"></property>
-	</bean>
-	<bean name="hello" class="com.f3.ioc.HelloWorldService">
+	</bean> -->
+	<bean name="hello" class="com.f3.example.HelloWorldServiceImpl">
 		<property name="content" value="你好"></property>
-		<property name="tool" ref="tool"></property>
+		<!-- <property name="tool" ref="tool"></property> -->
 	</bean>
 
 </beans>
