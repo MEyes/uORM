@@ -1,6 +1,6 @@
 package com.f3.aop;
 
-public interface PintCut {
+public interface Pointcut {
 	ClassFilter getClassFilter();
 
 	MethodMatcher getMethodMatcher();
