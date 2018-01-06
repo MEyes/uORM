@@ -8,13 +8,6 @@ public class AspectJExpressionPointcut implements Pointcut, ClassFilter, MethodM
 
 	private String expression;
 
-	private PointcutExpression pointcutExpression;
-
-	protected void checkReadyToMatch() {
-		if (pointcutExpression == null) {
-			pointcutExpression = buildPointcutExpression();
-		}
-	}
 
 	private PointcutExpression buildPointcutExpression() {
 		return pointcutParser.parsePointcutExpression(expression);
@@ -41,7 +34,8 @@ public class AspectJExpressionPointcut implements Pointcut, ClassFilter, MethodM
 
 	@Override
 	public boolean matches(Method method, Class targetClass) {
-		return true;
+		pointcutParser =new PointcutParser();
+		return false;
 	}
 
 }

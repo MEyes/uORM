@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.junit.Test;
 import org.junit.internal.Classes;
 
 import sun.management.counter.Variability;
@@ -19,10 +20,16 @@ public class PointcutParser {
 	}
 
 	public static void main(String[] args) throws Exception {
-		String expression = "com.f3.example.HelloWorldServiceImpl *(String,*) -> *";// com.f3.*
-																					// *(*)
-																					// ->
-																					// *
+
+	}
+
+	@Test
+	public void Parse(String expression) throws Exception {
+		// String expression = "com.f3.example.HelloWorldServiceImpl *(String,*)
+		// -> *";// com.f3.*
+		// *(*)
+		// ->
+		// *
 
 		// 去掉左右多余的空格
 		expression = expression.trim();
@@ -42,7 +49,6 @@ public class PointcutParser {
 
 		parsePackage(packageName);
 		parseMethod(methodName, methodParameters, returnType);
-
 	}
 
 	private static void parseMethod(String name, String parameters, String returnType) {
@@ -84,7 +90,7 @@ public class PointcutParser {
 						if ("*".equals(pList[i])) {
 							continue;
 						}
-						
+
 						if (!(pList[i].equals(tempList.get(i)))) {
 							flag = true;
 							break;
