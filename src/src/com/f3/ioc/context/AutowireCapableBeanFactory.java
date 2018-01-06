@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import com.f3.ioc.beans.BeanDefinition;
+import com.f3.ioc.beans.BeanFactoryAware;
 import com.f3.ioc.beans.BeanReference;
 import com.f3.ioc.beans.PropertyValue;
 
@@ -14,6 +15,7 @@ public class AutowireCapableBeanFactory extends AbstractBeanFactory {
 
 	@Override
 	protected Object doCreateBean(BeanDefinition beanDefinition)  throws Exception{
+	
 		Object bean=createBeanInstance(beanDefinition);
 		beanDefinition.setBean(bean);
 		applyPropertyValues(bean, beanDefinition);
@@ -25,6 +27,9 @@ public class AutowireCapableBeanFactory extends AbstractBeanFactory {
 		return beanDefinition.getBeanClass().newInstance();
 	}
 	protected void applyPropertyValues(Object bean, BeanDefinition beanDefinition) throws Exception{
+		if (bean instanceof BeanFactoryAware) {
+			((BeanFactoryAware) bean).setBeanFactory(this);
+		}
 		for (PropertyValue propertyValue : beanDefinition.getPropertyValues().getPropertyValues()) {
 			Field field = bean.getClass().getDeclaredField(propertyValue.getName());
 			field.setAccessible(true);
