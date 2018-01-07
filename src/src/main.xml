@@ -1,13 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans>
 
-	<!-- <bean name="tool" class="com.f3.example.Tool">
+
+	<!-- <bean id="beanInitializeLogger" class="com.f3.example.BeanInitializeLogger"> 
+		</bean> -->
+
+	<bean id="tool" class="com.f3.example.Tool">
 		<property name="func" value="hit"></property>
 		<property name="service" ref="hello"></property>
-	</bean> -->
-	<bean name="hello" class="com.f3.example.HelloWorldServiceImpl">
-		<property name="content" value="你好"></property>
-		<!-- <property name="tool" ref="tool"></property> -->
 	</bean>
+	<bean id="hello" class="com.f3.example.HelloWorldServiceImpl">
+		<property name="content" value="你好"></property>
+		<property name="tool" ref="tool"></property>
+	</bean>
+
+
+	<bean id="autoProxyCreator" class="com.f3.aop.AspectJAwareAdvisorAutoProxyCreator"></bean>
+	<bean id="timeInterceptor" class="com.f3.example.TimerInterceptor"></bean>
+
+	<bean id="aspectjAspect" class="com.f3.aop.AspectJExpressionPointcutAdvisor">
+		<property name="advice" ref="timeInterceptor"></property>
+		<property name="expression"
+			value="execution(com.f3.example.HelloWorldServiceImpl *(..) -> *)"></property>
+	</bean>
+
+
+
 
 </beans>

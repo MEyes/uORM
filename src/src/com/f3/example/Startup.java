@@ -43,15 +43,15 @@ public class Startup {
 		
 		//beanFactory.preInstantiateSingletons();
 		
-//		ApplicationContext applicationContext=new ClassPathXmlApplicationContext("main.xml");
-//		
-//		HelloWorldService bean = (HelloWorldService)applicationContext.getBean("hello");
-//		bean.sayHello();
-		byte[] bytes=ProxyGenerator.generateProxyClass("$proxy0",new Class[]{HelloWorldService.class});
+		ApplicationContext applicationContext=new ClassPathXmlApplicationContext("main.xml");
 		
-		FileOutputStream outputStream=new FileOutputStream("$proxy0.class");
-		outputStream.write(bytes);
-		outputStream.close();
+		HelloWorldService bean = (HelloWorldService)applicationContext.getBean("hello");
+		bean.sayHello();
+//		byte[] bytes=ProxyGenerator.generateProxyClass("$proxy0",new Class[]{HelloWorldService.class});
+//		
+//		FileOutputStream outputStream=new FileOutputStream("$proxy0.class");
+//		outputStream.write(bytes);
+//		outputStream.close();
 		
 	}
 }

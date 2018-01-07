@@ -5,9 +5,11 @@ import java.lang.reflect.Method;
 public class AspectJExpressionPointcut implements Pointcut, ClassFilter, MethodMatcher{
 
 	private PointcutParser pointcutParser;
-
 	private String expression;
-
+	
+	public AspectJExpressionPointcut() {
+		pointcutParser=new PointcutParser();
+	}
 
 	private PointcutExpression buildPointcutExpression() {
 		return pointcutParser.parsePointcutExpression(expression);
@@ -34,7 +36,6 @@ public class AspectJExpressionPointcut implements Pointcut, ClassFilter, MethodM
 
 	@Override
 	public boolean matches(Method method, Class targetClass) {
-		pointcutParser =new PointcutParser();
 		return false;
 	}
 
