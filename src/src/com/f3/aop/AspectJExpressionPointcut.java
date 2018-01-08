@@ -36,7 +36,7 @@ public class AspectJExpressionPointcut implements Pointcut, ClassFilter, MethodM
 
 	@Override
 	public boolean matches(Method method, Class targetClass) {
-		return false;
+		return true;
 	}
 
 }
