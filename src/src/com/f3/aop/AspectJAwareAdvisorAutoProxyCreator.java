@@ -14,11 +14,13 @@ public class AspectJAwareAdvisorAutoProxyCreator implements BeanPostProcessor, B
 
 	@Override
 	public Object postProcessBeforeInitialization(Object bean, String beanName) throws Exception {
+		System.out.println("Before--------"+beanName);
 		return bean;
 	}
 
 	@Override
 	public Object postProcessAfterInitialization(Object bean, String beanName) throws Exception {
+		System.out.println("After--------"+beanName);
 		if (bean instanceof AspectJExpressionPointcutAdvisor) {
 			return bean;
 		}

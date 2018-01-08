@@ -2,9 +2,9 @@ package com.f3.example;
 
 import com.f3.ioc.beans.BeanPostProcessor;
 
-public class HelloWorldServiceImpl implements HelloWorldService ,BeanPostProcessor{
+public class HelloWorldServiceImpl implements HelloWorldService {
 	public String content;
-	private Tool tool;
+//	private Tool tool;
 	
 	public void sayHello(){
 		System.out.println("Hello world!"+content);
@@ -16,15 +16,13 @@ public class HelloWorldServiceImpl implements HelloWorldService ,BeanPostProcess
 		return 1;
 	}
 
-	@Override
 	public Object postProcessBeforeInitialization(Object bean, String beanName) throws Exception {
-		System.out.println("Initialize bean " + beanName + " start!");
+		System.out.println("Before---Initialize bean " + beanName + " start!");
 		return bean;
 	}
 
-	@Override
 	public Object postProcessAfterInitialization(Object bean, String beanName) throws Exception {
-		System.out.println("Initialize bean " + beanName + " start!");
+		System.out.println("After---Initialize bean " + beanName + " start!");
 		return bean;
 	}
 }
