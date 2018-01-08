@@ -18,7 +18,7 @@ public class HelloWorldServiceImpl implements HelloWorldService ,BeanPostProcess
 
 	@Override
 	public Object postProcessBeforeInitialization(Object bean, String beanName) throws Exception {
-		//System.out.println("Initialize bean " + beanName + " start!");
+		System.out.println("Initialize bean " + beanName + " start!");
 		return bean;
 	}
 

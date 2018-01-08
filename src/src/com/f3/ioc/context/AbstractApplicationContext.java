@@ -19,7 +19,7 @@ public abstract class AbstractApplicationContext implements ApplicationContext{
 	protected abstract void loadBeanDefinitions(AbstractBeanFactory beanFactory) throws Exception;
 
 	protected void registerBeanPostProcessors(AbstractBeanFactory beanFactory) throws Exception {
-		List beanPostProcessors = beanFactory.getBeansForType(BeanPostProcessor.class);
+		List<?> beanPostProcessors = beanFactory.getBeansForType(BeanPostProcessor.class);
 		for (Object beanPostProcessor : beanPostProcessors) {
 			beanFactory.addBeanPostProcessor((BeanPostProcessor) beanPostProcessor);
 		}

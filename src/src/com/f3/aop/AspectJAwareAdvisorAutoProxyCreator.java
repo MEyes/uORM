@@ -25,8 +25,8 @@ public class AspectJAwareAdvisorAutoProxyCreator implements BeanPostProcessor, B
         if (bean instanceof MethodInterceptor) {
             return bean;
         }
-		List<AspectJExpressionPointcutAdvisor> advisors = beanFactory
-				.getBeansForType(AspectJExpressionPointcutAdvisor.class);
+		List<AspectJExpressionPointcutAdvisor> advisors = beanFactory.getBeansForType(AspectJExpressionPointcutAdvisor.class);
+	
 		for (AspectJExpressionPointcutAdvisor advisor : advisors) {
 			if (advisor.getPointcut().getClassFilter().matches(bean.getClass())) {
 				AdvisedSupport advisedSupport = new AdvisedSupport();

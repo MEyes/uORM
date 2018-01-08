@@ -2,9 +2,9 @@
 <beans>
 
 
-	<!-- <bean id="beanInitializeLogger" class="com.f3.example.BeanInitializeLogger"> 
-		</bean> -->
-
+<!-- 	<bean id="timeInterceptor" class="com.f3.example.TimeInterceptor"> 
+		</bean>
+ -->
 	<bean id="tool" class="com.f3.example.Tool">
 		<property name="func" value="hit"></property>
 		<property name="service" ref="hello"></property>
