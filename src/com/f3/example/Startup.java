@@ -1,21 +1,11 @@
 package com.f3.example;
 
-import java.io.BufferedReader;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map.Entry;
-
 import com.f3.ioc.context.ApplicationContext;
 import com.f3.ioc.context.ClassPathXmlApplicationContext;
 
-import sun.misc.ProxyGenerator;
-
 public class Startup {
 	public static void main(String[] args)  throws Exception{
-		
+		//System.out.println();
 //		InputStream inputStream = Startup.class.getClassLoader().getResourceAsStream("main.xml");
 //		BufferedReader bufferedReader=new BufferedReader(new InputStreamReader(inputStream));
 //		String content;
@@ -35,7 +25,7 @@ public class Startup {
 		beanDefinition.setBeanClassName("com.f3.ioc.HelloWorldService");
 		
 		PropertyValues propertyValues=new PropertyValues();
-		propertyValues.add(new PropertyValue("content", "你好"));
+		propertyValues.add(new PropertyValue("content", "浣犲ソ"));
 		
 		beanDefinition.setPropertyValues(propertyValues);
 		

@@ -2,18 +2,12 @@ package com.f3.example;
 
 import java.io.PrintWriter;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.SQLFeatureNotSupportedException;
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.logging.Logger;
 
 import javax.sql.DataSource;
-
-import org.junit.experimental.theories.Theories;
-
-import com.sun.org.apache.bcel.internal.generic.NEW;
 
 
 public class SimpleDataSource implements DataSource {

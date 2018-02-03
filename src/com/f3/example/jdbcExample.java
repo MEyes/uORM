@@ -4,16 +4,9 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Properties;
 
 import org.junit.Test;
-
-import com.mysql.jdbc.Driver;
-import com.mysql.jdbc.PreparedStatement;
-
-import jdk.nashorn.internal.runtime.ECMAErrors;
 
 public class jdbcExample {
 	

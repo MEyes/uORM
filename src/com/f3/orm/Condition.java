@@ -1,7 +1,5 @@
 package com.f3.orm;
 
-import com.sun.org.apache.bcel.internal.generic.ConstantPushInstruction;
-
 public class Condition {
 
 	private ConditionType conditionType;

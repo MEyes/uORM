@@ -2,7 +2,6 @@ package com.f3.ioc.beans;
 
 import java.io.InputStream;
 
-
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
@@ -12,7 +11,6 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import com.f3.ioc.io.ResourceLoader;
-import com.sun.xml.internal.messaging.saaj.packaging.mime.util.BEncoderStream;
 
 
 public class XmlBeanDefinitionReader  extends AbstractBeanDefinitionReader{
