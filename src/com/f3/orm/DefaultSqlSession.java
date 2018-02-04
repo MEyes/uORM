@@ -102,4 +102,5 @@ public class DefaultSqlSession implements SqlSession{
     public int delete(String sql, Object parameter) throws SQLException {
         return update(sql, parameter);
     }
+
 }

@@ -1,4 +1,4 @@
-package com.f3.dynamicsql;
+package com.f3.orm;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,7 +16,7 @@ public class SqlMapList {
 			return ;
 		}
 		statements.add(statement);
-		//ÁÙÊ±
+		//ï¿½ï¿½Ê±
 		maps.put(statement.getId(),statement);
 	}
 }

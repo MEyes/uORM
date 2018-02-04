@@ -1,4 +1,4 @@
-package com.f3.dynamicsql;
+package com.f3.orm;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -36,7 +36,7 @@ public class Statement {
 		statement.setId(id);
 		
 		
-		// ÎªDOMÊÇÓÐÑÏ¸ñµÄ¹æ·¶£¬×Ó½ÚµãÖ®¼äµÄ¿Õ°×»Ø³µ»»ÐÐÒ²¶¼ÊÇÒ»¸ö½ÚµãÁË
+		// ÎªDOMï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½Ä¹æ·¶ï¿½ï¿½ï¿½Ó½Úµï¿½Ö®ï¿½ï¿½Ä¿Õ°×»Ø³ï¿½ï¿½ï¿½ï¿½ï¿½Ò²ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Úµï¿½ï¿½ï¿½
 		NodeList childNodes = element.getChildNodes();
 		List<IncludeTag> includes = new ArrayList<IncludeTag>();
 		for (int i = 0; i < childNodes.getLength(); i++) {
@@ -67,7 +67,7 @@ public class Statement {
 				
 			}
 		}
-		//TODO£ºÈÝÆ÷Ò»Ñù
+		//TODOï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½
 		SqlMapList.addStatement(statement);
 
 		return statement;

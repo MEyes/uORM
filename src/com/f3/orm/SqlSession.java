@@ -5,6 +5,7 @@ import java.util.List;
 
 public interface SqlSession {
 
+
 	<T> T selectOne(String sql,String className) throws SQLException;
 
 	<T> T selectOne(String sql, Object parameter,String className)throws SQLException;

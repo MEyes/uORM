@@ -1,4 +1,4 @@
-package com.f3.dynamicsql;
+package com.f3.orm;
 
 public class SqlTextTag extends AbstractTag{
 

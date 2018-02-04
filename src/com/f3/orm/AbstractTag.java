@@ -1,4 +1,4 @@
-package com.f3.dynamicsql;
+package com.f3.orm;
 
 import java.util.List;
 import java.util.Map;
@@ -51,7 +51,7 @@ public abstract class AbstractTag implements Tag {
 	
 	@Override
 	public String buildSql(Context context) {
-		//ÐèÒªÅÐ¶Ï
+		//ï¿½ï¿½Òªï¿½Ð¶ï¿½
 		StringBuilder sBuilder=new StringBuilder();
 		if (test(context)) {
 			if (this.subTags!=null && this.subTags.size()>0) {

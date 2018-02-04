@@ -1,4 +1,4 @@
-package com.f3.dynamicsql;
+package com.f3.orm;
 
 import java.io.InputStream;
 import java.util.HashMap;
@@ -12,6 +12,12 @@ import org.w3c.dom.NodeList;
 
 public class Startup {
 	public static void main(String[] args) throws Exception, Exception, Exception {
+		
+//		MapperRegistry registry=new MapperRegistry(new Configuration());
+//		//registry.addMapper(User.class);
+//		System.out.println("--------------------------------");
+//		System.out.println(registry.getMapper(User.class, null));
+//		System.out.println("--------------------------------");
 		
 		InputStream is = Startup.class.getResourceAsStream("sql.xml");
 
