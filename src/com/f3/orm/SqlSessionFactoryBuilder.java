@@ -16,6 +16,6 @@ public class SqlSessionFactoryBuilder {
 	
 	public SqlSessionFactory build(){
 		
-		return new SqlSessionFactory();
+		return new SqlSessionFactory(new Configuration());
 	}
 }

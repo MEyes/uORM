@@ -5,6 +5,8 @@ import java.util.List;
 
 public class SimpleExecutor implements Executor{
 
+
+	
 	@Override
 	public boolean isAutoCommit() {
 		// TODO Auto-generated method stub
