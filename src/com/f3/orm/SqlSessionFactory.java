@@ -7,6 +7,6 @@ public class SqlSessionFactory {
 		this.configuration=configuration;
 	}
 	public SqlSession build(){
-		return new DefaultSqlSession(new SimpleExecutor(),this.configuration);
+		return new DefaultSqlSession(configuration);
 	}
 }
