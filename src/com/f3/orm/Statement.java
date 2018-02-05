@@ -42,8 +42,6 @@ public class Statement {
 		String id = element.getAttribute("id");
 		statement.setId(id);
 		
-		
-		// ΪDOM�����ϸ�Ĺ淶���ӽڵ�֮��Ŀհ׻س�����Ҳ����һ���ڵ���
 		NodeList childNodes = element.getChildNodes();
 		List<IncludeTag> includes = new ArrayList<IncludeTag>();
 		for (int i = 0; i < childNodes.getLength(); i++) {
@@ -74,7 +72,6 @@ public class Statement {
 				
 			}
 		}
-		//TODO������һ��
 		SqlMapList.addStatement(statement);
 
 		return statement;

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<statements>
+<statements type="com.f3.orm.User">
 	<statement id="whereCondition">
 		<where>
 			<IsNotNull field="id">
@@ -10,7 +10,7 @@
 			</IsNotNull>
 		</where>
 	</statement>
-	<statement id="get">
+	<statement id="get" parameterType="" resultType="">
 		select * from tf_f_user
 		<include ref="whereCondition" />
 	</statement>

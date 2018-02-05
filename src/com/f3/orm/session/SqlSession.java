@@ -17,7 +17,10 @@ public class SqlSession{
         this.configuration = configuration;
         this.executor = new SimpleExecutor(configuration);
     }
-
+    
+    public <T> T getMapper(Class<T> type) {
+        return configuration.<T>getMapper(type, this);
+    }
 
     public boolean isAutoCommit() {
         return executor.isAutoCommit();

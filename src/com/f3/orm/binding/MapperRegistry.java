@@ -25,7 +25,8 @@ public class MapperRegistry {
 	public void addMapper(Class type) throws Exception{
 			if(type.isInterface()) {
 				if (this.hasMapper(type)) {
-					throw new Exception("Type " + type+ " is already known to the MapperRegistry.");
+					return;
+					//throw new Exception("Type " + type+ " is already known to the MapperRegistry.");
 				}
 				this.knownMappers.put(type, new MapperProxyFactory(type));
 			}

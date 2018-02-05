@@ -1,7 +1,11 @@
 package com.f3.orm.session;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.sql.DataSource;
 
+import com.f3.orm.MappedStatement;
 import com.f3.orm.binding.MapperRegistry;
 import com.f3.orm.type.TypeHandlerRegistry;
 
@@ -10,6 +14,7 @@ public class Configuration {
 	
 	public final MapperRegistry mapperRegistry=new MapperRegistry(this);
 	public final TypeHandlerRegistry typeHandlerRegistry = new TypeHandlerRegistry();
+	public final List<MappedStatement> mappedStatements=new ArrayList<>();
 	private String driver;
 	private String url;
 	private String user;
@@ -44,6 +49,15 @@ public class Configuration {
 	}
 	public void setDataSource(DataSource dataSource) {
 		this.dataSource = dataSource;
+	}
+	public <T> T getMapper(Class<T> type, SqlSession sqlSession) {
+		try {
+			return mapperRegistry.getMapper(type, sqlSession);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 }

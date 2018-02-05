@@ -6,7 +6,7 @@ public class SqlSessionFactory {
 	public SqlSessionFactory(Configuration configuration) {
 		this.configuration=configuration;
 	}
-	public SqlSession build(){
+	public SqlSession openSession(){
 		return new SqlSession(configuration);
 	}
 }

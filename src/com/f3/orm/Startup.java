@@ -10,6 +10,10 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
+import com.f3.orm.session.SqlSession;
+import com.f3.orm.session.SqlSessionFactory;
+import com.f3.orm.session.SqlSessionFactoryBuilder;
+
 public class Startup {
 	public static void main(String[] args) throws Exception, Exception, Exception {
 		
@@ -19,7 +23,7 @@ public class Startup {
 //		System.out.println(registry.getMapper(User.class, null));
 //		System.out.println("--------------------------------");
 		
-		InputStream is = Startup.class.getResourceAsStream("sql.xml");
+	/*	InputStream is = Startup.class.getResourceAsStream("sql.xml");
 
 		Document document = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(is);
 		
@@ -42,7 +46,15 @@ public class Startup {
 		context.setPrameters(maps);
 		String sql=builder.buildSql(context, executeStatement);
 		
-		System.out.println(sql);
+		System.out.println(sql);*/
 		
+		InputStream is = Startup.class.getResourceAsStream("sql.xml");
+		//Document document = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(is);
+		SqlSessionFactoryBuilder factoryBuilder=new SqlSessionFactoryBuilder();
+		SqlSessionFactory factory=factoryBuilder.build(is);
+		SqlSession sqlSession = factory.openSession();
+		
+		User mapper = sqlSession.getMapper(User.class);
+		mapper.get(1);
 	}
 }

@@ -13,7 +13,7 @@ import javax.sql.DataSource;
 
 public class SimpleDataSource implements DataSource {
 	
-	private static LinkedList<Connection> pool = (LinkedList<Connection>)Collections.synchronizedList(new LinkedList<Connection>());
+	private static LinkedList<Connection> pool = new LinkedList<Connection>();
 	static{
 		try {
 			for (int i = 0; i < 10; i++) {
