@@ -1,6 +1,6 @@
 package com.f3.orm.scripting;
 
-import com.f3.orm.Context;
+import java.util.Map;
 
 public class IsNotNullSqlNode extends AbstractSqlNode{
 
@@ -10,8 +10,8 @@ public class IsNotNullSqlNode extends AbstractSqlNode{
 		return SqlNodeType.IsNotEmpty;
 	}
 	@Override
-	public boolean test(Context context) {
-		Object propertyValue = getPropertyValue(context);
+	public boolean test(Map<String, Object> parameters) {
+		Object propertyValue = getPropertyValue(parameters);
 		
 		if (propertyValue==null || propertyValue.equals("")) {
 			return false;

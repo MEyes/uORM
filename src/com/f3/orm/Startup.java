@@ -55,6 +55,6 @@ public class Startup {
 		SqlSession sqlSession = factory.openSession();
 		
 		UserMapper mapper = sqlSession.getMapper(UserMapper.class);
-		mapper.get(1);
+		mapper.get(new UserQueryDTO("杭州",1));
 	}
 }

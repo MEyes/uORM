@@ -1,8 +1,8 @@
 package com.f3.orm.scripting;
 
-import com.f3.orm.Context;
+import java.util.Map;
 
 public interface SqlNode {
 
-	String buildSql(Context context);
+	String buildSql(Map<String,Object> prameters);
 }

@@ -3,8 +3,6 @@ package com.f3.orm.scripting;
 import java.util.List;
 import java.util.Map;
 
-import com.f3.orm.Context;
-
 public abstract class AbstractSqlNode implements SqlNode {
 
 	protected String field;
@@ -47,19 +45,19 @@ public abstract class AbstractSqlNode implements SqlNode {
 		this.subTags = subTags;
 	}
 
-	public boolean test(Context context) {
+	public boolean test(Map<String,Object> prameters) {
 		return true;
 	}
 	
 	@Override
-	public String buildSql(Context context) {
+	public String buildSql(Map<String,Object> prameters) {
 		//��Ҫ�ж�
 		StringBuilder sBuilder=new StringBuilder();
-		if (test(context)) {
+		if (test(prameters)) {
 			if (this.subTags!=null && this.subTags.size()>0) {
 				
 				for (SqlNode tag : subTags) {
-					String sql=tag.buildSql(context);
+					String sql=tag.buildSql(prameters);
 					if (sql==null || sql.equals("")) {
 						continue;
 					}
@@ -72,8 +70,8 @@ public abstract class AbstractSqlNode implements SqlNode {
 		return sBuilder.toString();
 	}
 
-	public Object getPropertyValue(Context context) {
-		Map<String, Object> prameters = context.prameters;
+	public Object getPropertyValue(Map<String,Object> prameters) {
+	
 
 		if (prameters.containsKey(field)) {
 			return prameters.get(field);

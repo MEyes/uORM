@@ -12,8 +12,7 @@ import com.f3.orm.session.Configuration;
 public class DefaultExecutor implements Executor {
 
 	private Configuration configuration;
-	//private ConnectionUtil connectionUtil;
-
+	
 	private boolean autoCommit;
 
 	public DefaultExecutor(Configuration configuration) {
@@ -38,7 +37,7 @@ public class DefaultExecutor implements Executor {
 		List<T> list = null;
 		Connection connection = null;
 		try {
-			//connection = ConnectionUtil.getConnection();
+			connection = this.configuration.getDataSource().getConnection();
 			if (autoCommit) {
 				connection.setAutoCommit(true);
 			} else {
@@ -69,27 +68,27 @@ public class DefaultExecutor implements Executor {
 	@Override
 	public int update(BoundSql sql) throws SQLException {
 		int result = 0;
-		Connection conn = null;
+		Connection connection = null;
 		try {
-			//conn = ConnectionUtil.getConnection();
+			connection = this.configuration.getDataSource().getConnection();
 			if (!autoCommit) {
-				conn.setAutoCommit(false);
+				connection.setAutoCommit(false);
 			}
 
-			PreparedStatement statement = conn.prepareStatement(sql.getSql());
+			PreparedStatement statement = connection.prepareStatement(sql.getSql());
 			StatementHandler statementHandler = new DefaultStatementHandler(statement);
 			result = statementHandler.doUpdate(sql);
 			if (!autoCommit) {
-				conn.commit();
+				connection.commit();
 			}
 			statement.close();
 		} catch (Exception e) {
 			if (!autoCommit) {
-				conn.rollback();
+				connection.rollback();
 			}
 			e.printStackTrace();
 		} finally {
-			conn.close();
+			connection.close();
 		}
 
 		return result;

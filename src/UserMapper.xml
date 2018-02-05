@@ -2,15 +2,16 @@
 <statements type="com.f3.orm.UserMapper">
 	<statement id="whereCondition">
 		<where>
-			<IsNotNull field="id">
-				user_id=?
+			<IsNotNull field="city">
+				city=?
 			</IsNotNull>
-			<IsNotNull field="type" prepend="and">
-				user_type=?
+			<IsNotNull field="sex" prepend="and">
+				sex=?
 			</IsNotNull>
 		</where>
 	</statement>
-	<select id="get" parameterType="java.util.HashMap" resultType="com.f3.orm.User">
-		select * from tf_f_user	
+	<select id="get" parameterType="com.f3.orm.UserQueryDTO" resultType="com.f3.orm.User">
+		select * from tb_user
+		<include ref="whereCondition"/>
 	</select>
 </statements>

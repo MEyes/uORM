@@ -1,6 +1,6 @@
 package com.f3.orm.scripting;
 
-import com.f3.orm.Context;
+import java.util.Map;
 
 public class TextSqlNode extends AbstractSqlNode{
 
@@ -13,7 +13,7 @@ public class TextSqlNode extends AbstractSqlNode{
 	}
 	
 	@Override
-	public String buildSql(Context context) {
+	public String buildSql(Map<String,Object> prameters) {
 		return bodyText;
 	}
 	@Override

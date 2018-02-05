@@ -1,6 +1,7 @@
 package com.f3.orm.scripting;
 
-import com.f3.orm.Context;
+import java.util.Map;
+
 import com.f3.orm.mapping.MappedStatement;
 
 public class IncludeSqlNode extends AbstractSqlNode{
@@ -22,8 +23,8 @@ public class IncludeSqlNode extends AbstractSqlNode{
 		this.statement = statement;
 	}
 	@Override
-	public String buildSql(Context context) {
-		String sql=statement.buildSql(context);
+	public String buildSql(	Map<String, Object> parameters) {
+		String sql=statement.buildSql(parameters);
 		//prepend+sql
 		return sql;
 	}

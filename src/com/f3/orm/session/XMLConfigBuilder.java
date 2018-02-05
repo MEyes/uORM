@@ -107,16 +107,14 @@ public class XMLConfigBuilder {
 			String className = root.getAttribute("type");
 			this.configuration.mapperRegistry.addMapper(Class.forName(className));
 			//parseStatement
-			NodeList statements = root.getElementsByTagName("statement");
+			NodeList statements = root.getChildNodes();
 			for (int i = 0; i < statements.getLength(); i++) {
-				Element statementEl = (Element)statements.item(i);
-				
-				String parameterType = statementEl.getAttribute("parameterType");
-				String resultType = statementEl.getAttribute("resultType");
-				
-				MappedStatement mappedStatement=MappedStatement.build(statementEl);
-				String statementId = className + "." + statementEl.getAttribute("id");
-				this.configuration.mappedStatements.put(statementId, mappedStatement);
+				if (statements.item(i) instanceof Element) {
+					Element statementEl = (Element)statements.item(i);
+					MappedStatement mappedStatement=MappedStatement.build(statementEl);
+					String statementId = className + "." + statementEl.getAttribute("id");
+					this.configuration.mappedStatements.put(statementId, mappedStatement);
+				}
 			}
 			
 			

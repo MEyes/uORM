@@ -1,15 +1,12 @@
 package com.f3.orm.binding;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.lang.reflect.Parameter;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.ibatis.binding.MapperMethod.SqlCommand;
-
-import com.f3.orm.Context;
-import com.f3.orm.SqlBuilder;
-import com.f3.orm.SqlMapList;
+import com.f3.orm.mapping.BoundSql;
 import com.f3.orm.mapping.MappedStatement;
 import com.f3.orm.session.Configuration;
 import com.f3.orm.session.SqlSession;
@@ -28,27 +25,42 @@ public class MapperMethod {
 	}
 	
 	public Object execute(SqlSession sqlSession, Object[] args) {
-		//return null;
-		//sqlsession接口
-		Context context=new Context();
-		context.setSqlId(method.getName());
-		Map<String,Object> parameters=new HashMap<>();
-		parameters.put("id",args[0]);
-		context.setPrameters(parameters);
-		SqlBuilder builder=new SqlBuilder();
-		//全限定名
 		String statementId = mapperInterface.getName() + "." + method.getName();
 		MappedStatement executeStatement = this.configuration.mappedStatements.get(statementId);
+		Class parameterType = executeStatement.getParameterType();
 		
-		Parameter[] parameters2 = method.getParameters();
-		for (Parameter parameter : parameters2) {
-			System.out.println(parameter.getName());
+		Map<String,Object> parameters=new HashMap<>();
+		Field[] declaredFields = parameterType.getDeclaredFields();
+		//TODO:特殊处理
+		for (Field field : declaredFields) {
+			try {
+				parameters.put(field.getName(),field.get(args[0]) );
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} 
+		}
+
+		String sql=executeStatement.buildSql(parameters);
+
+		switch (executeStatement.getSqlCommandType()) {
+		case SELECT:
+			BoundSql boundSql=new BoundSql();
+
+//			try {
+//				//this.configuration.executor.query(boundSql);
+//			} catch (SQLException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+			break;
+
+		default:
+			break;
 		}
 		
-		String sql=builder.build(context, executeStatement);
-		//this.configuration.executor.e
-		
 		return null;
+		
 	}
 	
 	

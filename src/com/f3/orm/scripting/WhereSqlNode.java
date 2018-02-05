@@ -1,16 +1,16 @@
 package com.f3.orm.scripting;
 
-import com.f3.orm.Context;
+import java.util.Map;
 
 public class WhereSqlNode extends AbstractSqlNode{
 
 	@Override
-	public String buildSql(Context context) {
+	public String buildSql(Map<String,Object> parameters) {
 		StringBuilder sBuilder=new StringBuilder();
 		if (this.subTags!=null && this.subTags.size()>0) {
 			boolean isFirst=true;
 			for (SqlNode tag : subTags) {
-				String sql=tag.buildSql(context);
+				String sql=tag.buildSql(parameters);
 				if (sql==null || sql.equals("")) {
 					continue;
 				}
@@ -18,7 +18,7 @@ public class WhereSqlNode extends AbstractSqlNode{
 				if (isFirst) {
 					if (tag instanceof SqlNode) {
 						//trim
-						sql = tag.buildSql(context);
+						sql = tag.buildSql(parameters);
 						isFirst=false;
 						
 					}

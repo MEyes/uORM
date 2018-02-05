@@ -3,18 +3,18 @@ package com.f3.orm.mapping;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import com.f3.orm.Context;
 import com.f3.orm.SqlMapList;
 import com.f3.orm.scripting.AbstractSqlNode;
 import com.f3.orm.scripting.IncludeSqlNode;
 import com.f3.orm.scripting.IsNotNullSqlNode;
-import com.f3.orm.scripting.TextSqlNode;
 import com.f3.orm.scripting.SqlNode;
+import com.f3.orm.scripting.TextSqlNode;
 import com.f3.orm.scripting.WhereSqlNode;
 
 public class MappedStatement {
@@ -74,20 +74,22 @@ public class MappedStatement {
 		String tagName = element.getTagName();
 		if ("select".equals(tagName)) {
 			statement.setSqlCommandType(SqlCommandType.SELECT);
+			String parameterType = element.getAttribute("parameterType");
+			String resultType = element.getAttribute("resultType");
+			try {
+				//TODO：
+				statement.setParameterType(Class.forName(parameterType));
+				statement.setResultType(Class.forName(resultType));
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
 		}
 		statement.setTags(new ArrayList<SqlNode>());
 		String id = element.getAttribute("id");
 		statement.setId(id);
 
-		String parameterType = element.getAttribute("parameterType");
-		String resultType = element.getAttribute("resultType");
-		try {
-			statement.setParameterType(Class.forName(parameterType));
-			statement.setResultType(Class.forName(resultType));
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 
 		NodeList childNodes = element.getChildNodes();
 		List<IncludeSqlNode> includes = new ArrayList<IncludeSqlNode>();
@@ -187,10 +189,10 @@ public class MappedStatement {
 
 	}
 
-	public String buildSql(Context context) {
+	public String buildSql(Map<String,Object> prameters) {
 		StringBuilder sBuilder = new StringBuilder();
 		for (SqlNode tag : sqlNodes) {
-			String sql = tag.buildSql(context);
+			String sql = tag.buildSql(prameters);
 			sBuilder.append(sql);
 		}
 

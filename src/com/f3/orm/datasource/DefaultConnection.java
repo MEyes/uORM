@@ -24,13 +24,14 @@ public class DefaultConnection implements Connection {
 
 	private Connection decoredConnection;
 	private LinkedList<Connection> pool;
-	
-	public DefaultConnection(Connection decoredConnection,LinkedList<Connection> pool){
-		
-		this.decoredConnection=decoredConnection;
-		this.pool=pool;
-		
+
+	public DefaultConnection(Connection decoredConnection, LinkedList<Connection> pool) {
+
+		this.decoredConnection = decoredConnection;
+		this.pool = pool;
+
 	}
+
 	@Override
 	public Statement createStatement() throws SQLException {
 		return decoredConnection.createStatement();
@@ -40,14 +41,14 @@ public class DefaultConnection implements Connection {
 	public PreparedStatement prepareStatement(String sql) throws SQLException {
 		return decoredConnection.prepareStatement(sql);
 	}
-	
+
 	@Override
 	public void close() throws SQLException {
-		
-		if (pool!=null) {
+
+		if (pool != null) {
 			pool.addLast(decoredConnection);
 		}
-		
+
 	}
 
 	@Override
@@ -61,8 +62,6 @@ public class DefaultConnection implements Connection {
 		// TODO Auto-generated method stub
 		return false;
 	}
-
-	
 
 	@Override
 	public CallableStatement prepareCall(String sql) throws SQLException {
@@ -79,7 +78,7 @@ public class DefaultConnection implements Connection {
 	@Override
 	public void setAutoCommit(boolean autoCommit) throws SQLException {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -91,16 +90,14 @@ public class DefaultConnection implements Connection {
 	@Override
 	public void commit() throws SQLException {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void rollback() throws SQLException {
 		// TODO Auto-generated method stub
-		
-	}
 
-	
+	}
 
 	@Override
 	public boolean isClosed() throws SQLException {
@@ -117,7 +114,7 @@ public class DefaultConnection implements Connection {
 	@Override
 	public void setReadOnly(boolean readOnly) throws SQLException {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -129,7 +126,7 @@ public class DefaultConnection implements Connection {
 	@Override
 	public void setCatalog(String catalog) throws SQLException {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -141,7 +138,7 @@ public class DefaultConnection implements Connection {
 	@Override
 	public void setTransactionIsolation(int level) throws SQLException {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -159,7 +156,7 @@ public class DefaultConnection implements Connection {
 	@Override
 	public void clearWarnings() throws SQLException {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -190,13 +187,13 @@ public class DefaultConnection implements Connection {
 	@Override
 	public void setTypeMap(Map<String, Class<?>> map) throws SQLException {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void setHoldability(int holdability) throws SQLException {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -220,13 +217,13 @@ public class DefaultConnection implements Connection {
 	@Override
 	public void rollback(Savepoint savepoint) throws SQLException {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void releaseSavepoint(Savepoint savepoint) throws SQLException {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -301,13 +298,13 @@ public class DefaultConnection implements Connection {
 	@Override
 	public void setClientInfo(String name, String value) throws SQLClientInfoException {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void setClientInfo(Properties properties) throws SQLClientInfoException {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -337,7 +334,7 @@ public class DefaultConnection implements Connection {
 	@Override
 	public void setSchema(String schema) throws SQLException {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -349,13 +346,13 @@ public class DefaultConnection implements Connection {
 	@Override
 	public void abort(Executor executor) throws SQLException {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void setNetworkTimeout(Executor executor, int milliseconds) throws SQLException {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -363,7 +360,5 @@ public class DefaultConnection implements Connection {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-	
-	
-	
+
 }
