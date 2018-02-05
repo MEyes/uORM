@@ -4,8 +4,8 @@ import java.sql.SQLException;
 import java.sql.SQLWarning;
 import java.util.List;
 
-import com.f3.orm.Executor;
-import com.f3.orm.SimpleExecutor;
+import com.f3.orm.executor.Executor;
+import com.f3.orm.executor.SimpleExecutor;
 import com.f3.orm.mapping.BoundSql;
 
 public class SqlSession{

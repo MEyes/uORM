@@ -1,9 +1,11 @@
-package com.f3.orm;
+package com.f3.orm.mapping;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import com.f3.orm.Statement;
 
 public class MappedStatement {
 	

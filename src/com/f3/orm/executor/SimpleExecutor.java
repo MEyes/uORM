@@ -1,4 +1,4 @@
-package com.f3.orm;
+package com.f3.orm.executor;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,7 +12,7 @@ import com.f3.orm.session.Configuration;
 public class SimpleExecutor implements Executor {
 
 	private Configuration configuration;
-	private ConnectionUtil connectionUtil;
+	//private ConnectionUtil connectionUtil;
 
 	private boolean autoCommit;
 
@@ -38,7 +38,7 @@ public class SimpleExecutor implements Executor {
 		List<T> list = null;
 		Connection connection = null;
 		try {
-			connection = ConnectionUtil.getConnection();
+			//connection = ConnectionUtil.getConnection();
 			if (autoCommit) {
 				connection.setAutoCommit(true);
 			} else {
@@ -71,7 +71,7 @@ public class SimpleExecutor implements Executor {
 		int result = 0;
 		Connection conn = null;
 		try {
-			conn = ConnectionUtil.getConnection();
+			//conn = ConnectionUtil.getConnection();
 			if (!autoCommit) {
 				conn.setAutoCommit(false);
 			}

@@ -1,4 +1,4 @@
-package com.f3.orm;
+package com.f3.orm.session;
 
 import java.io.InputStream;
 
@@ -10,7 +10,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import com.f3.orm.session.Configuration;
+import com.f3.orm.Statement;
 
 public class XMLConfigBuilder {
 	private InputStream inputStream;
