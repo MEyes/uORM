@@ -1,13 +1,14 @@
-package com.f3.orm;
+package com.f3.orm.type;
 
+import java.lang.reflect.Type;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class IntegerTypeHandler implements TypeHandler{
+public class StringTypeHandler implements TypeHandler{
 
 	@Override
 	public Object getResult(ResultSet resultSet, String columnName) throws SQLException {
-		return resultSet.getInt(columnName);
+		return resultSet.getString(columnName);
 	}
 
 }

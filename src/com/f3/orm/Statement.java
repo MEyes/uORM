@@ -8,6 +8,13 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import com.f3.orm.scripting.AbstractTag;
+import com.f3.orm.scripting.IncludeTag;
+import com.f3.orm.scripting.IsNotNull;
+import com.f3.orm.scripting.SqlTextTag;
+import com.f3.orm.scripting.Tag;
+import com.f3.orm.scripting.WhereTag;
+
 public class Statement {
 	String id;
 	List<Tag> tags;

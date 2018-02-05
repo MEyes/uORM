@@ -1,9 +1,12 @@
-package com.f3.orm;
+package com.f3.orm.binding;
 
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+
+import com.f3.orm.session.Configuration;
+import com.f3.orm.session.SqlSession;
 
 
 public class MapperRegistry {

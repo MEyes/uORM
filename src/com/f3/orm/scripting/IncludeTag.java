@@ -1,4 +1,7 @@
-package com.f3.orm;
+package com.f3.orm.scripting;
+
+import com.f3.orm.Context;
+import com.f3.orm.Statement;
 
 public class IncludeTag extends AbstractTag{
 	

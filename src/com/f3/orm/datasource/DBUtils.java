@@ -1,4 +1,4 @@
-package com.f3.example;
+package com.f3.orm.datasource;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

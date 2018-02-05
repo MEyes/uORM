@@ -1,7 +1,9 @@
-package com.f3.orm;
+package com.f3.orm.scripting;
 
 import java.util.List;
 import java.util.Map;
+
+import com.f3.orm.Context;
 
 public abstract class AbstractTag implements Tag {
 

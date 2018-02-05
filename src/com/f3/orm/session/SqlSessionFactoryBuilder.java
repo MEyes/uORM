@@ -1,4 +1,6 @@
-package com.f3.orm;
+package com.f3.orm.session;
+
+import java.io.InputStream;
 
 public class SqlSessionFactoryBuilder {
 	
@@ -14,7 +16,7 @@ public class SqlSessionFactoryBuilder {
 		
 	}
 	
-	public SqlSessionFactory build(){
+	public SqlSessionFactory build(InputStream imputStream){
 		
 		return new SqlSessionFactory(new Configuration());
 	}

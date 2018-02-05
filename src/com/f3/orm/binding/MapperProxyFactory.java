@@ -1,9 +1,11 @@
-package com.f3.orm;
+package com.f3.orm.binding;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+
+import com.f3.orm.session.SqlSession;
 
 public class MapperProxyFactory<T> {
 

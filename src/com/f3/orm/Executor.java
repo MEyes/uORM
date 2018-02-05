@@ -3,6 +3,8 @@ package com.f3.orm;
 import java.sql.SQLException;
 import java.util.List;
 
+import com.f3.orm.mapping.BoundSql;
+
 public interface Executor {
     boolean isAutoCommit();
 

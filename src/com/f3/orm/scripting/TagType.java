@@ -1,4 +1,4 @@
-package com.f3.orm;
+package com.f3.orm.scripting;
 
 public enum TagType {
 	SqlText,

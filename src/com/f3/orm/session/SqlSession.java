@@ -1,15 +1,19 @@
-package com.f3.orm;
+package com.f3.orm.session;
 
 import java.sql.SQLException;
 import java.sql.SQLWarning;
 import java.util.List;
 
-public class DefaultSqlSession implements SqlSession{
+import com.f3.orm.Executor;
+import com.f3.orm.SimpleExecutor;
+import com.f3.orm.mapping.BoundSql;
+
+public class SqlSession{
 
 	private Executor executor;
 	private Configuration configuration;
 
-    public DefaultSqlSession(Configuration configuration) {
+    public SqlSession(Configuration configuration) {
         this.configuration = configuration;
         this.executor = new SimpleExecutor(configuration);
     }

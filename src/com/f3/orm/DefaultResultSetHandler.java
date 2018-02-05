@@ -13,6 +13,9 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.f3.orm.mapping.BoundSql;
+import com.f3.orm.type.ColumnTypeHandler;
+
 public class DefaultResultSetHandler implements ResultSetHandler {
 
 	private ResultSet resultSet;

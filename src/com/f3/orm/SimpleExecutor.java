@@ -6,6 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import com.f3.orm.mapping.BoundSql;
+import com.f3.orm.session.Configuration;
+
 public class SimpleExecutor implements Executor {
 
 	private Configuration configuration;

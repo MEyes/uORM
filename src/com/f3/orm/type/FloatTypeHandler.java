@@ -1,13 +1,13 @@
-package com.f3.orm;
+package com.f3.orm.type;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class DoubleTypeHandler implements TypeHandler{
+public class FloatTypeHandler implements TypeHandler{
 
 	@Override
 	public Object getResult(ResultSet resultSet, String columnName) throws SQLException {
-		return resultSet.getDouble(columnName);
+		return resultSet.getFloat(columnName);
 	}
 
 }

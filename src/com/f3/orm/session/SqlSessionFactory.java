@@ -1,4 +1,4 @@
-package com.f3.orm;
+package com.f3.orm.session;
 
 public class SqlSessionFactory {
 	
@@ -7,6 +7,6 @@ public class SqlSessionFactory {
 		this.configuration=configuration;
 	}
 	public SqlSession build(){
-		return new DefaultSqlSession(configuration);
+		return new SqlSession(configuration);
 	}
 }

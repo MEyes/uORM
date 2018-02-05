@@ -1,10 +1,12 @@
-package com.f3.orm;
+package com.f3.orm.binding;
 
 import java.io.Serializable;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+
+import com.f3.orm.session.SqlSession;
 
 public class MapperProxy implements InvocationHandler,Serializable{
 

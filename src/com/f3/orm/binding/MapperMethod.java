@@ -1,8 +1,9 @@
-package com.f3.orm;
+package com.f3.orm.binding;
 
 import java.lang.reflect.Method;
 
-
+import com.f3.orm.session.Configuration;
+import com.f3.orm.session.SqlSession;
 
 public class MapperMethod {
 
@@ -19,7 +20,7 @@ public class MapperMethod {
 	
 	public Object execute(SqlSession sqlSession, Object[] args) {
 		return null;
-		
+		//sqlsession接口
 	}
 	
 }

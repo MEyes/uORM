@@ -1,4 +1,4 @@
-package com.f3.orm;
+package com.f3.orm.type;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

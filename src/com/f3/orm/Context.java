@@ -4,7 +4,7 @@ import java.util.Map;
 
 public class Context {
 	String sqlId;
-	Map<String,Object> prameters;
+	public Map<String,Object> prameters;
 	public String getSqlId() {
 		return sqlId;
 	}

@@ -1,4 +1,4 @@
-package com.f3.orm;
+package com.f3.orm.mapping;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
