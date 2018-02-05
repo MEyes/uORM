@@ -1,8 +1,11 @@
 package com.f3.orm.binding;
 
 import java.lang.reflect.Method;
+import java.lang.reflect.Parameter;
 import java.util.HashMap;
 import java.util.Map;
+
+import org.apache.ibatis.binding.MapperMethod.SqlCommand;
 
 import com.f3.orm.Context;
 import com.f3.orm.SqlBuilder;
@@ -33,11 +36,20 @@ public class MapperMethod {
 		parameters.put("id",args[0]);
 		context.setPrameters(parameters);
 		SqlBuilder builder=new SqlBuilder();
-		MappedStatement executeStatement = SqlMapList.maps.get(method.getName());
-		String sql=builder.buildSql(context, executeStatement);
-		System.out.println(sql);
+		//全限定名
+		String statementId = mapperInterface.getName() + "." + method.getName();
+		MappedStatement executeStatement = this.configuration.mappedStatements.get(statementId);
+		
+		Parameter[] parameters2 = method.getParameters();
+		for (Parameter parameter : parameters2) {
+			System.out.println(parameter.getName());
+		}
+		
+		String sql=builder.build(context, executeStatement);
+		//this.configuration.executor.e
 		
 		return null;
 	}
+	
 	
 }

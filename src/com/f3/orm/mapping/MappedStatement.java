@@ -19,10 +19,39 @@ import com.f3.orm.scripting.WhereSqlNode;
 
 public class MappedStatement {
 	private String id;
-	private List<SqlNode> sqlNodes;
-	private MappedStatement(){
-		
+	private Class resultType;
+	private Class parameterType;
+	private SqlCommandType sqlCommandType;
+	public SqlCommandType getSqlCommandType() {
+		return sqlCommandType;
 	}
+
+	public void setSqlCommandType(SqlCommandType sqlCommandType) {
+		this.sqlCommandType = sqlCommandType;
+	}
+
+	public Class getResultType() {
+		return resultType;
+	}
+
+	public void setResultType(Class resultType) {
+		this.resultType = resultType;
+	}
+
+	public Class getParameterType() {
+		return parameterType;
+	}
+
+	public void setParameterType(Class parameterType) {
+		this.parameterType = parameterType;
+	}
+
+	private List<SqlNode> sqlNodes;
+
+	private MappedStatement() {
+
+	}
+
 	public List<SqlNode> getTags() {
 		return sqlNodes;
 	}
@@ -42,16 +71,30 @@ public class MappedStatement {
 	public static MappedStatement build(Element element) {
 
 		MappedStatement statement = new MappedStatement();
+		String tagName = element.getTagName();
+		if ("select".equals(tagName)) {
+			statement.setSqlCommandType(SqlCommandType.SELECT);
+		}
 		statement.setTags(new ArrayList<SqlNode>());
 		String id = element.getAttribute("id");
 		statement.setId(id);
-		
+
+		String parameterType = element.getAttribute("parameterType");
+		String resultType = element.getAttribute("resultType");
+		try {
+			statement.setParameterType(Class.forName(parameterType));
+			statement.setResultType(Class.forName(resultType));
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 		NodeList childNodes = element.getChildNodes();
 		List<IncludeSqlNode> includes = new ArrayList<IncludeSqlNode>();
 		for (int i = 0; i < childNodes.getLength(); i++) {
 
 			Node node = childNodes.item(i);
-			SqlNode tag = loadSqlNode( node, includes);
+			SqlNode tag = loadSqlNode(node, includes);
 			if (tag != null) {
 				statement.sqlNodes.add(tag);
 			}
@@ -59,21 +102,21 @@ public class MappedStatement {
 		}
 
 		// init includes
-		
+
 		for (int i = 0; i < includes.size(); i++) {
-			IncludeSqlNode includeSqlNode=includes.get(i);
-			String refId=includeSqlNode.getRefId();
+			IncludeSqlNode includeSqlNode = includes.get(i);
+			String refId = includeSqlNode.getRefId();
 			if (statement.getId().equals(refId)) {
 				throw new RuntimeException();
 			}
-			
+
 			Iterator<MappedStatement> iterator = SqlMapList.statements.iterator();
 			while (iterator.hasNext()) {
 				MappedStatement sm = (MappedStatement) iterator.next();
 				if (sm.getId().equals(refId)) {
 					includeSqlNode.setStatement(sm);
 				}
-				
+
 			}
 		}
 		SqlMapList.addStatement(statement);
@@ -83,19 +126,19 @@ public class MappedStatement {
 	}
 
 	public static SqlNode loadSqlNode(Node node, List<IncludeSqlNode> includes) {
-		
-		if (!( node instanceof Element)) {
+
+		if (!(node instanceof Element)) {
 			String content = node.getTextContent().trim();
-			if (content!=null && content.length()>0) {
-				TextSqlNode sqlTextTag=new TextSqlNode();
+			if (content != null && content.length() > 0) {
+				TextSqlNode sqlTextTag = new TextSqlNode();
 				sqlTextTag.setBodyText(content);
 				return sqlTextTag;
 			}
 			return null;
-			
+
 		}
-		Element element=(Element)node;
-		
+		Element element = (Element) node;
+
 		String prepend = element.getAttribute("prepend");
 		String field = element.getAttribute("field");
 
@@ -120,11 +163,11 @@ public class MappedStatement {
 			tag = includeSqlNode;
 			break;
 		case "IsNotNull":
-			IsNotNullSqlNode isNotEmptySqlNode=new IsNotNullSqlNode();
+			IsNotNullSqlNode isNotEmptySqlNode = new IsNotNullSqlNode();
 			isNotEmptySqlNode.setField(field);
 			isNotEmptySqlNode.setPrepend(prepend);
 			isNotEmptySqlNode.setSubTags(new ArrayList<SqlNode>());
-			tag=isNotEmptySqlNode;
+			tag = isNotEmptySqlNode;
 			break;
 		default:
 			return null;
@@ -143,14 +186,14 @@ public class MappedStatement {
 		return tag;
 
 	}
-	
-	public String buildSql(Context context){
-		StringBuilder sBuilder=new StringBuilder();
+
+	public String buildSql(Context context) {
+		StringBuilder sBuilder = new StringBuilder();
 		for (SqlNode tag : sqlNodes) {
 			String sql = tag.buildSql(context);
 			sBuilder.append(sql);
 		}
-		
+
 		return sBuilder.toString();
 	}
 }

@@ -54,7 +54,7 @@ public class Startup {
 		SqlSessionFactory factory=factoryBuilder.build(is);
 		SqlSession sqlSession = factory.openSession();
 		
-		User mapper = sqlSession.getMapper(User.class);
+		UserMapper mapper = sqlSession.getMapper(UserMapper.class);
 		mapper.get(1);
 	}
 }

@@ -1,5 +1,5 @@
 package com.f3.orm;
 
-public interface User {
+public interface UserMapper {
 	void get(int id);
 }

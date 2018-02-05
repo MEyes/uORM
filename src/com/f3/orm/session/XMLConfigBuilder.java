@@ -110,7 +110,13 @@ public class XMLConfigBuilder {
 			NodeList statements = root.getElementsByTagName("statement");
 			for (int i = 0; i < statements.getLength(); i++) {
 				Element statementEl = (Element)statements.item(i);
-				MappedStatement.build(statementEl);
+				
+				String parameterType = statementEl.getAttribute("parameterType");
+				String resultType = statementEl.getAttribute("resultType");
+				
+				MappedStatement mappedStatement=MappedStatement.build(statementEl);
+				String statementId = className + "." + statementEl.getAttribute("id");
+				this.configuration.mappedStatements.put(statementId, mappedStatement);
 			}
 			
 			

@@ -36,7 +36,7 @@ public class MapperProxy implements InvocationHandler,Serializable{
 	public MapperMethod cacheMapperMethod(Method method){
 		MapperMethod result=methodCache.get(method);
 		if(result==null){
-			result=new MapperMethod(mapperInterface,method,null);
+			result=new MapperMethod(mapperInterface,method,sqlSession.getConfiguration());
 			methodCache.put(method,result);
 		}
 		return result;

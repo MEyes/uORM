@@ -2,7 +2,7 @@
 
 <configuration>
 
-	<datasource type="com.f3.orm.datasource.SimpleDataSource">
+	<datasource type="com.f3.orm.datasource.DefaultDataSource">
 		<property name="driver" value="com.mysql.jdbc.Driver" />
 		<property name="url"
 			value="jdbc:mysql://localhost:3306/user?useUnicode=true" />
@@ -11,7 +11,7 @@
 	</datasource>
 
 	<mappers>
-		<mapper resource="User.xml" />
+		<mapper resource="UserMapper.xml" />
 	</mappers>
 
 </configuration>

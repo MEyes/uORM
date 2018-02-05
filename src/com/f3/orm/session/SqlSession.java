@@ -17,6 +17,9 @@ public class SqlSession{
         this.configuration = configuration;
         this.executor = new DefaultExecutor(configuration);
     }
+    public Configuration getConfiguration(){
+    	return this.configuration;
+    }
     
     public <T> T getMapper(Class<T> type) {
         return configuration.<T>getMapper(type, this);
