@@ -1,9 +1,9 @@
 package com.f3.orm.scripting;
 
 import com.f3.orm.Context;
-import com.f3.orm.Statement;
+import com.f3.orm.mapping.MappedStatement;
 
-public class IncludeTag extends AbstractTag{
+public class IncludeSqlNode extends AbstractSqlNode{
 	
 	private String refId;
 	
@@ -13,12 +13,12 @@ public class IncludeTag extends AbstractTag{
 	public void setRefId(String refId) {
 		this.refId = refId;
 	}
-	private Statement statement;
+	private MappedStatement statement;
 	
-	public Statement getStatement() {
+	public MappedStatement getStatement() {
 		return statement;
 	}
-	public void setStatement(Statement statement) {
+	public void setStatement(MappedStatement statement) {
 		this.statement = statement;
 	}
 	@Override
@@ -28,7 +28,7 @@ public class IncludeTag extends AbstractTag{
 		return sql;
 	}
 	@Override
-	public TagType getType() {
-		return TagType.Include;
+	public SqlNodeType getType() {
+		return SqlNodeType.Include;
 	}
 }

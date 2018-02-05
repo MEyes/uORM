@@ -8,13 +8,13 @@ import com.mysql.jdbc.exceptions.MySQLTransientException;
 public class ColumnTypeHandler {
 	
     public static Class getClass(int columnType) {
-        return TypeHandlerFactory.getClass(columnType);
+        return TypeHandlerRegistry.getClass(columnType);
     }
 
     public static Object getResult(ResultSet resultSet, String columnName, int columnType) throws SQLException {
         TypeHandler handler = null;
 
-        handler = TypeHandlerFactory.getTypeHandler(columnType);
+        handler = TypeHandlerRegistry.getTypeHandler(columnType);
         if (handler == null) {
             throw new MySQLTransientException();
         }

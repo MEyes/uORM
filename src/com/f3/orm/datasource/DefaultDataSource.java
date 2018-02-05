@@ -11,14 +11,14 @@ import java.util.logging.Logger;
 import javax.sql.DataSource;
 
 
-public class SimpleDataSource implements DataSource {
+public class DefaultDataSource implements DataSource {
 	
 	private static LinkedList<Connection> pool = new LinkedList<Connection>();
 	static{
 		try {
 			for (int i = 0; i < 10; i++) {
 				Connection conn = DBUtils.getConnection();
-				Connection wrapConn=new SimpleConnection(conn, pool);
+				Connection wrapConn=new DefaultConnection(conn, pool);
 				pool.add(wrapConn);
 			}
 		} catch (Exception e) {

@@ -9,14 +9,14 @@ import java.util.List;
 import com.f3.orm.mapping.BoundSql;
 import com.f3.orm.session.Configuration;
 
-public class SimpleExecutor implements Executor {
+public class DefaultExecutor implements Executor {
 
 	private Configuration configuration;
 	//private ConnectionUtil connectionUtil;
 
 	private boolean autoCommit;
 
-	public SimpleExecutor(Configuration configuration) {
+	public DefaultExecutor(Configuration configuration) {
 		this.configuration = configuration;
 		setAutoCommit(true);
 	}

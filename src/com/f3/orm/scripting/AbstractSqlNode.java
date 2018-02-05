@@ -5,7 +5,7 @@ import java.util.Map;
 
 import com.f3.orm.Context;
 
-public abstract class AbstractTag implements Tag {
+public abstract class AbstractSqlNode implements SqlNode {
 
 	protected String field;
 	protected String prepend;
@@ -35,15 +35,15 @@ public abstract class AbstractTag implements Tag {
 		this.comparedValue = comparedValue;
 	}
 
-	public abstract TagType getType();
+	public abstract SqlNodeType getType();
 
-	protected List<Tag> subTags;
+	protected List<SqlNode> subTags;
 
-	public List<Tag> getSubTags() {
+	public List<SqlNode> getSubTags() {
 		return subTags;
 	}
 
-	public void setSubTags(List<Tag> subTags) {
+	public void setSubTags(List<SqlNode> subTags) {
 		this.subTags = subTags;
 	}
 
@@ -58,7 +58,7 @@ public abstract class AbstractTag implements Tag {
 		if (test(context)) {
 			if (this.subTags!=null && this.subTags.size()>0) {
 				
-				for (Tag tag : subTags) {
+				for (SqlNode tag : subTags) {
 					String sql=tag.buildSql(context);
 					if (sql==null || sql.equals("")) {
 						continue;

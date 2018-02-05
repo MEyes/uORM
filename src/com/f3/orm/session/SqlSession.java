@@ -5,7 +5,7 @@ import java.sql.SQLWarning;
 import java.util.List;
 
 import com.f3.orm.executor.Executor;
-import com.f3.orm.executor.SimpleExecutor;
+import com.f3.orm.executor.DefaultExecutor;
 import com.f3.orm.mapping.BoundSql;
 
 public class SqlSession{
@@ -15,7 +15,7 @@ public class SqlSession{
 
     public SqlSession(Configuration configuration) {
         this.configuration = configuration;
-        this.executor = new SimpleExecutor(configuration);
+        this.executor = new DefaultExecutor(configuration);
     }
     
     public <T> T getMapper(Class<T> type) {

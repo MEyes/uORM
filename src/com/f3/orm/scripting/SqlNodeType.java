@@ -1,6 +1,6 @@
 package com.f3.orm.scripting;
 
-public enum TagType {
+public enum SqlNodeType {
 	SqlText,
 	IsEmpty,
 	IsNotEmpty,
@@ -14,6 +14,4 @@ public enum TagType {
 	IsFalse,
 	Where,
 	Include,
-	
-	
 }

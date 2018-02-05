@@ -2,7 +2,7 @@ package com.f3.orm.scripting;
 
 import com.f3.orm.Context;
 
-public class SqlTextTag extends AbstractTag{
+public class TextSqlNode extends AbstractSqlNode{
 
 	String bodyText;
 	public String getBodyText() {
@@ -17,7 +17,7 @@ public class SqlTextTag extends AbstractTag{
 		return bodyText;
 	}
 	@Override
-	public TagType getType() {
-		return TagType.SqlText;
+	public SqlNodeType getType() {
+		return SqlNodeType.SqlText;
 	}
 }

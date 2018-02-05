@@ -2,12 +2,12 @@ package com.f3.orm.scripting;
 
 import com.f3.orm.Context;
 
-public class IsNotNull extends AbstractTag{
+public class IsNotNullSqlNode extends AbstractSqlNode{
 
 
 	@Override
-	public TagType getType() {
-		return TagType.IsNotEmpty;
+	public SqlNodeType getType() {
+		return SqlNodeType.IsNotEmpty;
 	}
 	@Override
 	public boolean test(Context context) {

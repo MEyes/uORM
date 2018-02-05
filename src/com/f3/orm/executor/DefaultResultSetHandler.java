@@ -92,8 +92,6 @@ public class DefaultResultSetHandler implements ResultSetHandler {
 			
 		}
 	}
-	
-	
 
 	@Override
 	public <E> List<E> handleResultSets(Statement stmt) throws SQLException {

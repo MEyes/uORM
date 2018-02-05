@@ -10,17 +10,17 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import com.f3.orm.Statement;
+import com.f3.orm.mapping.MappedStatement;
+import com.f3.orm.type.TypeHandlerRegistry;
 
 public class XMLConfigBuilder {
 	private InputStream inputStream;
 	private Configuration configuration;
-
-	// private final TypeHandlerRegistry typeHandlerRegistry;
+	private TypeHandlerRegistry typeHandlerRegistry;
 	public XMLConfigBuilder(InputStream inputStream) {
 		this.inputStream = inputStream;
 		this.configuration = new Configuration();
-		// this.typeHandlerRegistry=this.configuration.
+		this.typeHandlerRegistry=this.configuration.typeHandlerRegistry;
 	}
 
 	public Configuration parse() {
@@ -110,7 +110,7 @@ public class XMLConfigBuilder {
 			NodeList statements = root.getElementsByTagName("statement");
 			for (int i = 0; i < statements.getLength(); i++) {
 				Element statementEl = (Element)statements.item(i);
-				Statement.load(statementEl);
+				MappedStatement.build(statementEl);
 			}
 			
 			

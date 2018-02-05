@@ -5,11 +5,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.f3.orm.mapping.MappedStatement;
+
 public class SqlMapList {
 	
-	public static final Map<String, Statement> maps=new HashMap<String,Statement>();
-	public static final List<Statement> statements=new ArrayList<Statement>();
-	public static void addStatement(Statement statement){
+	public static final Map<String, MappedStatement> maps=new HashMap<String,MappedStatement>();
+	public static final List<MappedStatement> statements=new ArrayList<MappedStatement>();
+	public static void addStatement(MappedStatement statement){
 		if (statements.contains(statement)) {
 			return ;
 		}

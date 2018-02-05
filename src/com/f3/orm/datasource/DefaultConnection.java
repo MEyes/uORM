@@ -20,12 +20,12 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.Executor;
 
-public class SimpleConnection implements Connection {
+public class DefaultConnection implements Connection {
 
 	private Connection decoredConnection;
 	private LinkedList<Connection> pool;
 	
-	public SimpleConnection(Connection decoredConnection,LinkedList<Connection> pool){
+	public DefaultConnection(Connection decoredConnection,LinkedList<Connection> pool){
 		
 		this.decoredConnection=decoredConnection;
 		this.pool=pool;
