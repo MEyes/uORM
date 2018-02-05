@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<statements>
+	<statement id="whereCondition">
+		<where>
+			<IsNotNull field="id">
+				user_id=?
+			</IsNotNull>
+			<IsNotNull field="type" prepend="and">
+				user_type=?
+			</IsNotNull>
+		</where>
+	</statement>
+	<statement id="get">
+		select * from tf_f_user
+		<include ref="whereCondition" />
+	</statement>
+</statements>

@@ -4,6 +4,7 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.SQLFeatureNotSupportedException;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.logging.Logger;
 
@@ -12,19 +13,12 @@ import javax.sql.DataSource;
 
 public class SimpleDataSource implements DataSource {
 	
-
-	//模擬一個數據庫連接池
-	//private static LinkedList<Connection> pool = (LinkedList<Connection>)Collections.synchronizedList(new LinkedList<Connection>());
-	//支持多綫程
-	private static LinkedList<Connection> pool = new LinkedList<Connection>();
-
-	
+	private static LinkedList<Connection> pool = (LinkedList<Connection>)Collections.synchronizedList(new LinkedList<Connection>());
 	static{
 		try {
 			for (int i = 0; i < 10; i++) {
 				Connection conn = DBUtils.getConnection();
-				Connection wrapConn=new MyConnection(conn, pool);
-				
+				Connection wrapConn=new SimpleConnection(conn, pool);
 				pool.add(wrapConn);
 			}
 		} catch (Exception e) {
@@ -37,7 +31,6 @@ public class SimpleDataSource implements DataSource {
 		Connection conn = null;
 		if(pool.size()>0){
 			conn =  pool.removeFirst();//从池中取出一个连接
-			
 		}else{
 			
 			try {
