@@ -3,6 +3,7 @@ package com.f3.orm.binding;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -64,7 +65,7 @@ public class MapperMethod {
 		default:
 			break;
 		}
-		
+
 		return result;
 		
 	}

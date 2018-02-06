@@ -1,9 +1,11 @@
 package com.f3.orm;
 
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 
@@ -57,6 +59,7 @@ public class Startup {
 		
 		UserMapper mapper = sqlSession.getMapper(UserMapper.class);
 		List<User> list = mapper.get(new UserQueryDTO("HZ",1));
+		
 		System.out.println(list);
 	}
 }
