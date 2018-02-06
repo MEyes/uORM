@@ -4,8 +4,10 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import com.f3.orm.User;
 import com.f3.orm.mapping.BoundSql;
 import com.f3.orm.mapping.MappedStatement;
 import com.f3.orm.session.Configuration;
@@ -28,9 +30,11 @@ public class MapperMethod {
 		String statementId = mapperInterface.getName() + "." + method.getName();
 		MappedStatement executeStatement = this.configuration.mappedStatements.get(statementId);
 		Class parameterType = executeStatement.getParameterType();
+		Class resultType=executeStatement.getResultType();
 		
 		Map<String,Object> parameters=new HashMap<>();
 		Field[] declaredFields = parameterType.getDeclaredFields();
+		List<Object> result=null;
 		//TODO:特殊处理
 		for (Field field : declaredFields) {
 			try {
@@ -42,24 +46,26 @@ public class MapperMethod {
 		}
 
 		String sql=executeStatement.buildSql(parameters);
-
+	
 		switch (executeStatement.getSqlCommandType()) {
 		case SELECT:
-			BoundSql boundSql=new BoundSql();
-
-//			try {
-//				//this.configuration.executor.query(boundSql);
-//			} catch (SQLException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
+			BoundSql boundSql=new BoundSql(sql,resultType);
+			
+			try {
+				//应该去sqlsession
+				result=this.configuration.executor.query(boundSql);
+		
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			break;
 
 		default:
 			break;
 		}
 		
-		return null;
+		return result;
 		
 	}
 	

@@ -4,24 +4,27 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
+import org.eclipse.jdt.internal.compiler.ast.ThisReference;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import com.f3.orm.SqlMapList;
 import com.f3.orm.scripting.AbstractSqlNode;
 import com.f3.orm.scripting.IncludeSqlNode;
 import com.f3.orm.scripting.IsNotNullSqlNode;
 import com.f3.orm.scripting.SqlNode;
 import com.f3.orm.scripting.TextSqlNode;
 import com.f3.orm.scripting.WhereSqlNode;
+import com.f3.orm.session.Configuration;
 
 public class MappedStatement {
 	private String id;
 	private Class resultType;
 	private Class parameterType;
 	private SqlCommandType sqlCommandType;
+	private Configuration configuration;
 	public SqlCommandType getSqlCommandType() {
 		return sqlCommandType;
 	}
@@ -68,9 +71,10 @@ public class MappedStatement {
 		this.id = id;
 	}
 
-	public static MappedStatement build(Element element) {
+	public static MappedStatement build(Element element,Configuration configuration) {
 
 		MappedStatement statement = new MappedStatement();
+		statement.setConfiguration(configuration);
 		String tagName = element.getTagName();
 		if ("select".equals(tagName)) {
 			statement.setSqlCommandType(SqlCommandType.SELECT);
@@ -112,16 +116,17 @@ public class MappedStatement {
 				throw new RuntimeException();
 			}
 
-			Iterator<MappedStatement> iterator = SqlMapList.statements.iterator();
+			Iterator<Entry<String, MappedStatement>> iterator = statement.configuration.mappedStatements.entrySet().iterator();
 			while (iterator.hasNext()) {
-				MappedStatement sm = (MappedStatement) iterator.next();
+				Entry<String, MappedStatement> entry = iterator.next();
+				MappedStatement sm =  entry.getValue();
 				if (sm.getId().equals(refId)) {
 					includeSqlNode.setStatement(sm);
 				}
 
 			}
 		}
-		SqlMapList.addStatement(statement);
+		statement.configuration.mappedStatements.put(id, statement);
 
 		return statement;
 
@@ -197,5 +202,13 @@ public class MappedStatement {
 		}
 
 		return sBuilder.toString();
+	}
+
+	public Configuration getConfiguration() {
+		return configuration;
+	}
+
+	public void setConfiguration(Configuration configuration) {
+		this.configuration = configuration;
 	}
 }

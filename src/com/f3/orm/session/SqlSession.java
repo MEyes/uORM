@@ -87,7 +87,7 @@ public class SqlSession{
     }
 
     public <T> List<T> selectList(String sql, Object value, Class<T> resultClazz) throws SQLException {
-        BoundSql boundSql = new BoundSql(sql, value, resultClazz);
+        BoundSql boundSql = new BoundSql(sql, resultClazz);
         return executor.query(boundSql);
     }
 
@@ -96,7 +96,7 @@ public class SqlSession{
     }
 
     public int update(String sql, Object parameter) throws SQLException {
-    	BoundSql boundSql = new BoundSql(sql, parameter, null);
+    	BoundSql boundSql = new BoundSql(sql, null);
         return executor.update(boundSql);
     }
 

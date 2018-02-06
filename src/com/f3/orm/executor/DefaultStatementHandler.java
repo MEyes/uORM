@@ -18,12 +18,10 @@ public class DefaultStatementHandler implements StatementHandler {
     }
 
     public ResultSet doQuery(BoundSql boundSql) throws SQLException {
-    	boundSql.updatePrepareStatement(statement);
         return statement.executeQuery();
     }
 
     public int doUpdate(BoundSql boundSql) throws SQLException {
-    	boundSql.updatePrepareStatement(statement);
         return statement.executeUpdate();
     }
 

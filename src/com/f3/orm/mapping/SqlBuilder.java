@@ -1,8 +1,6 @@
-package com.f3.orm;
+package com.f3.orm.mapping;
 
 import java.util.Map;
-
-import com.f3.orm.mapping.MappedStatement;
 
 public class SqlBuilder {
 	 public String build(Map<String, Object> parameters, MappedStatement statement)

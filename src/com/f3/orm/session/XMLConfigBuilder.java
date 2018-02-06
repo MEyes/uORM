@@ -111,7 +111,7 @@ public class XMLConfigBuilder {
 			for (int i = 0; i < statements.getLength(); i++) {
 				if (statements.item(i) instanceof Element) {
 					Element statementEl = (Element)statements.item(i);
-					MappedStatement mappedStatement=MappedStatement.build(statementEl);
+					MappedStatement mappedStatement=MappedStatement.build(statementEl,configuration);
 					String statementId = className + "." + statementEl.getAttribute("id");
 					this.configuration.mappedStatements.put(statementId, mappedStatement);
 				}

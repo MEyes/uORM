@@ -2,6 +2,7 @@ package com.f3.orm;
 
 import java.io.InputStream;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -55,6 +56,7 @@ public class Startup {
 		SqlSession sqlSession = factory.openSession();
 		
 		UserMapper mapper = sqlSession.getMapper(UserMapper.class);
-		mapper.get(new UserQueryDTO("杭州",1));
+		List<User> list = mapper.get(new UserQueryDTO("HZ",1));
+		System.out.println(list);
 	}
 }

@@ -6,7 +6,8 @@ public class WhereSqlNode extends AbstractSqlNode{
 
 	@Override
 	public String buildSql(Map<String,Object> parameters) {
-		StringBuilder sBuilder=new StringBuilder();
+		//TODO：临时
+		StringBuilder sBuilder=new StringBuilder(" where ");
 		if (this.subTags!=null && this.subTags.size()>0) {
 			boolean isFirst=true;
 			for (SqlNode tag : subTags) {

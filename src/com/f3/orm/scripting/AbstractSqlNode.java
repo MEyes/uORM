@@ -51,8 +51,8 @@ public abstract class AbstractSqlNode implements SqlNode {
 	
 	@Override
 	public String buildSql(Map<String,Object> prameters) {
-		//��Ҫ�ж�
-		StringBuilder sBuilder=new StringBuilder();
+		//临时
+		StringBuilder sBuilder=new StringBuilder(" ");
 		if (test(prameters)) {
 			if (this.subTags!=null && this.subTags.size()>0) {
 				
@@ -61,7 +61,8 @@ public abstract class AbstractSqlNode implements SqlNode {
 					if (sql==null || sql.equals("")) {
 						continue;
 					}
-
+					Object value = prameters.get(field);
+					sql=sql.replace("#","'"+String.valueOf(value)+"'");
 					sBuilder.append(sql);
 				}
 				
@@ -72,7 +73,6 @@ public abstract class AbstractSqlNode implements SqlNode {
 
 	public Object getPropertyValue(Map<String,Object> prameters) {
 	
-
 		if (prameters.containsKey(field)) {
 			return prameters.get(field);
 		}

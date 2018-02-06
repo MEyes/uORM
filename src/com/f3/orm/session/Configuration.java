@@ -5,11 +5,11 @@ import java.util.Map;
 
 import javax.sql.DataSource;
 
-import com.f3.orm.SqlBuilder;
 import com.f3.orm.binding.MapperRegistry;
 import com.f3.orm.executor.DefaultExecutor;
 import com.f3.orm.executor.Executor;
 import com.f3.orm.mapping.MappedStatement;
+import com.f3.orm.mapping.SqlBuilder;
 import com.f3.orm.type.TypeHandlerRegistry;
 
 public class Configuration {

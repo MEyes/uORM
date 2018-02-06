@@ -1,5 +1,7 @@
 package com.f3.orm;
 
+import java.util.List;
+
 public interface UserMapper {
-	void get(UserQueryDTO userQueryDTO);
+	List<User> get(UserQueryDTO userQueryDTO);
 }

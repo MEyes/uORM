@@ -3,10 +3,10 @@
 	<statement id="whereCondition">
 		<where>
 			<IsNotNull field="city">
-				city=?
+				city=#
 			</IsNotNull>
 			<IsNotNull field="sex" prepend="and">
-				sex=?
+				and sex=#
 			</IsNotNull>
 		</where>
 	</statement>

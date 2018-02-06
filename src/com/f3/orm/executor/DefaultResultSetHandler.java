@@ -29,7 +29,7 @@ public class DefaultResultSetHandler implements ResultSetHandler {
 			ResultSetMetaData metaData= resultSet.getMetaData();
 			int coumn=metaData.getColumnCount();
 			
-			for(int i=0;i<coumn;i++){
+			for(int i=1;i<=coumn;i++){
 				String columnName=metaData.getColumnName(i);
 				int columnType=metaData.getColumnType(i);
 				
@@ -37,6 +37,7 @@ public class DefaultResultSetHandler implements ResultSetHandler {
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
+			System.err.println(e.getMessage());
 		}
 	}
 	private Map<String,Integer> columnMap;
