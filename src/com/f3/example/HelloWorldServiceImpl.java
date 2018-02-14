@@ -1,18 +1,28 @@
 package com.f3.example;
 
-import com.f3.ioc.beans.BeanPostProcessor;
+import java.util.Map;
 
 public class HelloWorldServiceImpl implements HelloWorldService {
 	public String content;
 //	private Tool tool;
 	
+	public Map<String,String> map;
+	
+	public Map<String, String> getMap() {
+		return map;
+	}
+
+	public void setMap(Map<String, String> map) {
+		this.map = map;
+	}
+
 	public void sayHello(){
-		System.out.println("Hello world!"+content);
+		System.out.println("Hello world!"+map);
 	}
 
 	@Override
 	public int sayHi(String name, int value) {
-		System.out.println("hi");
+		System.out.println(name);
 		return 1;
 	}
 

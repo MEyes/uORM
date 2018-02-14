@@ -70,20 +70,20 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 				Element propertyEle = (Element) node;
 				String name = propertyEle.getAttribute("name");
 				String value = propertyEle.getAttribute("value");
+				String ref = propertyEle.getAttribute("ref");
+				//集合的注入，既不value也不ref节点
+				NodeList props = propertyEle.getElementsByTagName("props");
 				if (value != null && value.length() > 0) {
 					beanDefinition.getPropertyValues().addPropertyValue(new PropertyValue(name, value));
-				} else {
-					String ref = propertyEle.getAttribute("ref");
-					if (ref == null || ref.length() == 0) {
-						throw new IllegalArgumentException("Illegal Argument");
-					}
+				} else if (ref != null && ref.length() > 0) {
+
 					BeanReference beanReference = new BeanReference(ref);
 					beanDefinition.getPropertyValues().addPropertyValue(new PropertyValue(name, beanReference));
-					// 处理Props
-					NodeList props = propertyEle.getElementsByTagName("props");
-					if (props != null) {
-						processProps(props, beanDefinition, name);
-					}
+				} else if (props != null) {// 处理Props
+					processProps(props, beanDefinition, name);
+				}else{
+					throw new IllegalArgumentException("Configuration problem: <property> element for property '"
+							+ name + "' must specify a ref or value");
 				}
 
 			}
@@ -93,11 +93,11 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 
 	private void processProps(NodeList props, BeanDefinition beanDefinition, String name) {
 		for (int i = 0; i < props.getLength(); i++) {
-			//直接item(0)
+			// 直接item(0)
 			Node node = props.item(i);
 			if (node instanceof Element) {
 				Element propsEle = (Element) node;
-				//prop代表属性
+				// prop代表属性
 				NodeList prop = propsEle.getElementsByTagName("prop");
 				Map<String, Object> urlMap = new HashMap<String, Object>();
 				for (int j = 0; j < prop.getLength(); j++) {

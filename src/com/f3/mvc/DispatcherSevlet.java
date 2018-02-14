@@ -2,7 +2,6 @@ package com.f3.mvc;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -16,11 +15,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.catalina.deploy.Injectable;
-import org.eclipse.jdt.internal.compiler.ast.ThisReference;
-
-import com.f3.example.MyController;
-import com.f3.example.MyService;
 import com.f3.mvc.annotation.Controller;
 import com.f3.mvc.annotation.Qualified;
 import com.f3.mvc.annotation.RequestMapping;
